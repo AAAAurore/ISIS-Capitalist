@@ -1,0 +1,46 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/Angular_ISIS-Capitalist/dist
+/Angular_ISIS-Capitalist/tmp
+/Angular_ISIS-Capitalist/out-tsc
+/Angular_ISIS-Capitalist/bazel-out
+
+# Node
+/Angular_ISIS-Capitalist/node_modules
+Angular_ISIS-Capitalist/npm-debug.log
+Angular_ISIS-Capitalist/yarn-error.log
+
+# IDEs and editors
+Angular_ISIS-Capitalist/.idea/
+Angular_ISIS-Capitalist/.project
+Angular_ISIS-Capitalist/.classpath
+Angular_ISIS-Capitalist/.c9/
+Angular_ISIS-Capitalist/*.launch
+Angular_ISIS-Capitalist/.settings/
+Angular_ISIS-Capitalist/*.sublime-workspace
+
+# Visual Studio Code
+Angular_ISIS-Capitalist/.vscode/*
+Angular_ISIS-Capitalist/!.vscode/settings.json
+Angular_ISIS-Capitalist/!.vscode/tasks.json
+Angular_ISIS-Capitalist/!.vscode/launch.json
+Angular_ISIS-Capitalist/!.vscode/extensions.json
+Angular_ISIS-Capitalist/.history/*
+
+# Miscellaneous
+/Angular_ISIS-Capitalist/.angular/cache
+Angular_ISIS-Capitalist/.sass-cache/
+/Angular_ISIS-Capitalist/connect.lock
+/Angular_ISIS-Capitalist/coverage
+/Angular_ISIS-Capitalist/libpeerconnection.log
+Angular_ISIS-Capitalist/testem.log
+/Angular_ISIS-Capitalist/typings
+
+# System files
+Angular_ISIS-Capitalist/.DS_Store
+Angular_ISIS-Capitalist/Thumbs.db
+
+
+Serveur_ISIS-Capitalist/node_modules/
+Serveur_ISIS-Capitalist/.idea/

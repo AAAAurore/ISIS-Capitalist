@@ -1,0 +1,52 @@
+<div class="label" *ngIf="labelVisible == true && _product != _world.products[0]">
+    <input type="image" [src]="labelLien" id="labelImage" [disabled]="LabelDisabled" (click)="labelVisible = false"/>
+    <label class="labelName" for="labelImage">
+        {{ _product.name }}
+        <mat-divider></mat-divider>
+        {{ _product.revenu }}
+    </label>
+</div>
+<mat-card class="carte" id="carte" *ngIf="labelVisible == false || _product == _world.products[0]">
+    <mat-card-content class="carteProduct">
+        <div class="product">
+            <div class="lesDeux">
+                <div class="lePremier">
+                    <button class="round" (click)="clickIcon()">
+                        <img [attr.src]="server + _product.logo" class="round"/>
+                    </button>
+                </div>
+                <div class="leSecond">
+                    <div [matBadge]="_product.quantite" matBadgeSize="large" class="demo-section"></div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="progressValue">
+                    <div class="progressBar" >
+                        <app-my-progress-bar [run]="true" [auto]="auto" [vitesse]="_product.vitesse"
+                            [initialValue]="progressBarValue" (click)="clickIcon()"></app-my-progress-bar>
+                    </div>
+                    <div class="valueScore">
+                        {{ _product.revenu * _product.quantite }}
+                    </div>
+                </div>
+                <div class="bas">
+                    <button mat-fab extended class="buy" (click)="acheterProduit()"
+                        [disabled]="_world.money < calculCoutTotal() || _world.money == 0">
+                        <div class="inButton">
+                            <div style="display:flex; margin: auto;">
+                                <mat-icon>add_shopping_cart</mat-icon>
+                                Acheter<br />x {{ calcMaxCanBuy() }}
+                            </div>
+                            <div style="margin-left: auto; margin-top: auto;">{{ calculCoutTotal() | currency: 'EUR': 'symbol' }}</div>
+                        </div>
+                    </button>
+                    <mat-card class="carteTimeLeft">
+                        <mat-card-content class="timeLeft">
+                            <div>{{ _product.timeleft | date: 'mm:ss:SS' }}</div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

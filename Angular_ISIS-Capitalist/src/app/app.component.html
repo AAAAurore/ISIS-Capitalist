@@ -1,0 +1,38 @@
+<div class="header">
+  <div class="logo">
+    <div *ngIf="server">
+      <img [attr.src]="server + world.logo" class="round"/>
+    </div>
+    <div>
+      <div class="logoName">{{ world.name }}</div>
+    </div>
+    </div>
+  <div class="money">
+    <span [innerHTML]="world.money | bigvalue | currency: 'EUR': 'symbol'"></span>
+  </div>
+  <div>
+    <button mat-fab extended (click)="changeQuantite()">
+      <mat-icon>clear icon</mat-icon>
+      Acheter<br />{{ qtmulti }}
+    </button>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>ID du joueur</mat-label>
+      <input matInput placeholder="Saisissez votre ID">
+    </mat-form-field>
+  </div>
+</div>
+<div class="main">
+  <div class="buttons">
+    <input type="image" src="/assets/carteUnlocks.png"/>
+    <input type="image" src="/assets/carteCashUpgrades.png"/>
+    <input type="image" src="/assets/carteAngelUpgrades.png"/>
+    <input type="image" src="/assets/carteManagers.png"/>
+    <input type="image" src="/assets/carteInvestigors.png"/>
+  </div>
+  <div class="product">
+      <app-product *ngFor="let product of world.products" [product]="product" [world]="world" [qtmulti]="qtmulti"
+        (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)" class="product col-md-6"></app-product>
+  </div>
+</div>

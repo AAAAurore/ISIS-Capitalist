@@ -1,0 +1,117 @@
+.label{
+    height: 147px;
+    position: relative;
+    text-align: center;
+    width: 518px;
+}
+
+.labelName{
+    bottom: 45px;
+    font-family: 'Rajdhani', 'sans-serif';
+    font-size: x-large;
+    font-weight: 700;
+    position: absolute;
+    left: 190px;
+}
+
+.carte{
+    height: 147px;
+    width: 518px;
+    --mdc-elevated-card-container-color: none;
+}
+
+::ng-deep .carteProduct{
+    backdrop-filter: blur(15px);
+    background-color: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.product {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.lesDeux {
+    align-items: center;
+    position: relative;
+}
+
+.lePremier button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.leSecond {
+    bottom: 10px;
+    left: 20px;
+    position: absolute;
+}
+
+.mat-badge-content{
+    background: #ffffff;
+    color: #000000;
+}
+
+.right{
+    align-content: center;
+    display: grid;
+}
+
+.progressValue {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.valueScore {
+    padding-left: 50%;
+    padding-top: 3px;
+    position: absolute;
+}
+
+.bar {
+    align-items: center;
+    display: grid;
+    position: relative;
+}
+
+.barQuantite {
+    align-items: center;
+    bottom: 10px;
+    position: absolute;
+}
+
+.bas {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    padding-right: 30px;
+    padding-top: 20px;
+}
+
+button{
+    display: block;
+}
+
+.buy{
+    margin-right: 20px;
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+}
+
+.inButton{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.timeLeft{
+    display: inline-block;
+    text-align: center;
+}
+
+.timeLeft div{
+    text-align: center;
+}
+
+.carteTimeLeft{
+    width: 90px;
+}

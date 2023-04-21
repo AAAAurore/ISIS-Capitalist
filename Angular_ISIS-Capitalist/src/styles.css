@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+
+html, body {
+    background-image: url('http://localhost:4000/icones/gallifreyan.jpg');
+    background-size: cover;
+    height: 100%;
+    margin: 0px;
+    width: 100%;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+}
+
+.round {
+    border-radius: 50%;
+    object-fit: contain;
+    height: 115px;
+    width: 115px;
+}
+
+button[mat-fab][extended]{
+    background-color: #31B0DF;
+    color: black;
+    text-align: left;
+}
+
+button[mat-fab][extended]:disabled{
+    background-color: gray;
+    color: black;
+    text-align: left;
+}

@@ -1,5 +1,5 @@
 <div class="label" *ngIf="labelVisible == true && _product != _world.products[0]">
-    <input type="image" [src]="labelLien" id="labelImage" [disabled]="LabelDisabled" (click)="labelVisible = false"/>
+    <input type="image" [src]="'/assets/' + labelLien + '.png'" id="labelImage" [disabled]="LabelDisabled" (click)="labelVisible = false"/>
     <label class="labelName" for="labelImage">
         {{ _product.name }}
         <mat-divider></mat-divider>

@@ -92,12 +92,12 @@ export class ProductComponent {
 
   updateLabel(){
     if(this._world.money < this._product.revenu){
-      this.labelLien = "/assets/labelGray.png";
-      this.LabelDisabled = false;
+      this.labelLien = "labelGray";
+      this.LabelDisabled = true;
     }
     else{
-      this.labelLien = "/assets/label.png";
-      this.LabelDisabled = true;
+      this.labelLien = "label";
+      this.LabelDisabled = false;
     }
     
   }

@@ -1,0 +1,42 @@
+<div class="popUp">
+    <h1 mat-dialog-title>Les managers simplifient la vie !</h1>
+    <mat-dialog-content>
+        Embauchez-en un pour gérer votre entreprise à votre place ou pour maximiser l'efficacité le tout pour un seul paiement facile !
+        <div class="noManager">
+            {{ msgNoManager }}
+        </div>
+        <div *ngFor="let manager of world.managers">
+            <mat-card class="manager" *ngIf="!manager.unlocked">
+                <div *ngIf="server">
+                    <img [attr.src]="server + manager.logo" class="round"/>
+                </div>
+                <div>
+                    <mat-card-content class="managerLayout">
+                        <div class="managerName">
+                            {{ manager.name }}
+                        </div>
+                        <div class="managerCible">
+                            {{ world.products[manager.idcible - 1].name }}
+                        </div>
+                        <br />
+                        <mat-divider></mat-divider>
+                        <br />
+                        <div class="managerCost">
+                            {{ manager.seuil | number}}
+                        </div>
+                    </mat-card-content>
+                </div>
+                <mat-card-actions align="start">
+                    <button mat-fab extended (click)="hireManager(manager)"
+                        [disabled]="world.money < manager.seuil">
+                        <mat-icon>work</mat-icon>
+                        Embaucher
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Fermer</button>
+    </mat-dialog-actions>
+</div>

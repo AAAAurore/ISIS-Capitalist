@@ -1,32 +1,32 @@
-<div class="label" *ngIf="labelVisible == true && _product != _world.products[0]">
+<div class="label" *ngIf="labelVisible && _product != _world.products[0]">
     <input type="image" [src]="'/assets/' + labelLien + '.png'" id="labelImage" [disabled]="LabelDisabled" (click)="labelVisible = false"/>
     <label class="labelName" for="labelImage">
         {{ _product.name }}
         <mat-divider></mat-divider>
-        {{ _product.revenu }}
+        {{ _product.revenu | number }}
     </label>
 </div>
-<mat-card class="carte" id="carte" *ngIf="labelVisible == false || _product == _world.products[0]">
+<mat-card class="carte" id="carte" *ngIf="!labelVisible || _product == _world.products[0]">
     <mat-card-content class="carteProduct">
         <div class="product">
             <div class="lesDeux">
                 <div class="lePremier">
-                    <button class="round" (click)="clickIcon()">
+                    <button class="round" (click)="clickIcon()" [disabled]="_product.timeleft > 0">
                         <img [attr.src]="server + _product.logo" class="round"/>
                     </button>
                 </div>
                 <div class="leSecond">
-                    <div [matBadge]="_product.quantite" matBadgeSize="large" class="demo-section"></div>
+                    <div [matBadge]="_product.quantite | number" matBadgeSize="large"></div>
                 </div>
             </div>
             <div class="right">
                 <div class="progressValue">
-                    <div class="progressBar" >
-                        <app-my-progress-bar [run]="true" [auto]="auto" [vitesse]="_product.vitesse"
-                            [initialValue]="progressBarValue" (click)="clickIcon()"></app-my-progress-bar>
+                    <div class="progressBar">
+                        <app-my-progress-bar [run]="run" [auto]="auto" [vitesse]="_product.vitesse"
+                            [initialValue]="progressBarValue"></app-my-progress-bar>
                     </div>
                     <div class="valueScore">
-                        {{ _product.revenu * _product.quantite }}
+                        {{ _product.revenu * _product.quantite | number }}
                     </div>
                 </div>
                 <div class="bas">
@@ -35,7 +35,7 @@
                         <div class="inButton">
                             <div style="display:flex; margin: auto;">
                                 <mat-icon>add_shopping_cart</mat-icon>
-                                Acheter<br />x {{ calcMaxCanBuy() }}
+                                Acheter<br />x {{ calcMaxCanBuy() | number }}
                             </div>
                             <div style="margin-left: auto; margin-top: auto;">{{ calculCoutTotal() | currency: 'EUR': 'symbol' }}</div>
                         </div>

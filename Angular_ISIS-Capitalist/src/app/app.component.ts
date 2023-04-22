@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { Product, World } from './world';
+import { Palier, Product, World } from './world';
 import { RestserviceService } from './restservice.service';
 import { MatDialog } from '@angular/material/dialog';
+import { PopUpManagersComponent } from './pop-up-managers/pop-up-managers.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -19,10 +22,17 @@ export class AppComponent {
   
   server: string;
 
+  // Badges des boutons
+  badgeUnlocks: number = 0;
+  badgeCashUpgrades: number = 0;
+  badgeAngelUpgrades: number = 0;
+  badgeManagers: number = 0;
+
   // Constructeur
   constructor(
     private restService: RestserviceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
     ) {
     restService.getWorld().then( world => {
       this.world = world.data.getWorld;
@@ -43,10 +53,63 @@ export class AppComponent {
 
   onBuy(coutProduit: number){
     this.world.money -= coutProduit;
+    this.updateImages();
   }
 
   onProductionDone(p: Product){
     this.world.money += p.revenu * p.quantite;
     this.world.score += p.revenu * p.quantite;
+    this.updateImages();
+  }
+
+  openSnackBar(message: string, type: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      data: { message: message, snackType: type }
+    });
+  }
+
+  popUpUnlocks(){
+
+  }
+
+  popUpCashUpgrades(){
+
+  }
+  
+  popUpAngelUpgrades(){
+
+  }
+
+  popUpManagers(){
+    const dialogRef = this.dialog.open(PopUpManagersComponent, {
+      data: {
+        server: this.server,
+        world: this.world
+      }
+    });
+
+    dialogRef.componentInstance.update.subscribe((manager) => {
+      this.updateImages()
+      this.openSnackBar("Le manager " + manager.name + " du produit \"" + this.world.products[manager.idcible - 1].name + "\" a été embauché !", 'Success');
+    });
+  }
+
+  popUpInvestigors(){
+
+  }
+
+  updateImages(){
+    var unlocks: Palier[] = this.world.allunlocks.filter(u => u.seuil <= this.world.money);
+    var cashUpgrades: Palier[] = this.world.upgrades.filter(u => u.seuil <= this.world.money);
+    var angelUpgrades: Palier[] = this.world.angelupgrades.filter(a => a.seuil <= this.world.money);
+    var managers: Palier[] = this.world.managers.filter(m => m.seuil <= this.world.money);
+
+    this.badgeUnlocks = unlocks.filter(u => !u.unlocked).length;
+    this.badgeCashUpgrades = cashUpgrades.filter(u => !u.unlocked).length;
+    this.badgeAngelUpgrades = angelUpgrades.filter(a => !a.unlocked).length;
+    this.badgeManagers = managers.filter(m => !m.unlocked).length;
   }
 }

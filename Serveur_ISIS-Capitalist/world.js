@@ -391,7 +391,7 @@ module.exports = {
         {
             "name": "Matt SMITH",
             "logo": "icones/ms.jpg",
-            "seuil": 10,
+            "seuil": 1000,
             "idcible": 1,
             "ratio": 0,
             "typeratio": "GAIN",
@@ -400,8 +400,8 @@ module.exports = {
         {
             "name": "David TENNANT",
             "logo": "icones/dt.jpg",
-            "seuil": 10,
-            "idcible": 1,
+            "seuil": 1500,
+            "idcible": 2,
             "ratio": 0,
             "typeratio": "GAIN",
             "unlocked": false
@@ -409,8 +409,8 @@ module.exports = {
         {
             "name": "Karen GILLAN",
             "logo": "icones/kg.jpg",
-            "seuil": 10,
-            "idcible": 1,
+            "seuil": 2000,
+            "idcible": 3,
             "ratio": 0,
             "typeratio": "GAIN",
             "unlocked": false
@@ -418,8 +418,8 @@ module.exports = {
         {
             "name": "Arthur DARVILL",
             "logo": "icones/ad.jpg",
-            "seuil": 10,
-            "idcible": 1,
+            "seuil": 4000,
+            "idcible": 4,
             "ratio": 0,
             "typeratio": "GAIN",
             "unlocked": false
@@ -427,8 +427,8 @@ module.exports = {
         {
             "name": "Alex KINGSTON",
             "logo": "icones/ak.jpg",
-            "seuil": 10,
-            "idcible": 1,
+            "seuil": 7000,
+            "idcible": 5,
             "ratio": 0,
             "typeratio": "GAIN",
             "unlocked": false
@@ -436,17 +436,8 @@ module.exports = {
         {
             "name": "Jodie WHITTAKER",
             "logo": "icones/jw.jpg",
-            "seuil": 10,
-            "idcible": 1,
-            "ratio": 0,
-            "typeratio": "GAIN",
-            "unlocked": false
-        },
-        {
-            "name": "Peter CAPALDI",
-            "logo": "icones/pc.jpg",
-            "seuil": 10,
-            "idcible": 1,
+            "seuil": 11000,
+            "idcible": 6,
             "ratio": 0,
             "typeratio": "GAIN",
             "unlocked": false

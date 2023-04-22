@@ -49,7 +49,7 @@
 }
 
 .mat-badge-content{
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.8);
     color: #000000;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .progressValue {
-    margin-bottom: 10px;
+    bottom: 18px;
     position: relative;
 }
 
@@ -67,12 +67,6 @@
     padding-left: 50%;
     padding-top: 3px;
     position: absolute;
-}
-
-.bar {
-    align-items: center;
-    display: grid;
-    position: relative;
 }
 
 .barQuantite {
@@ -113,5 +107,6 @@ button{
 }
 
 .carteTimeLeft{
+    background: rgba(255, 255, 255, 0.8);
     width: 90px;
 }

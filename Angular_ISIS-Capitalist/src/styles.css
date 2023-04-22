@@ -24,7 +24,7 @@ body {
 }
 
 button[mat-fab][extended]{
-    background-color: #31B0DF;
+    background-color: #2B9AC3;
     color: black;
     text-align: left;
 }
@@ -33,4 +33,17 @@ button[mat-fab][extended]:disabled{
     background-color: gray;
     color: black;
     text-align: left;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__title{
+    font-family: 'Rajdhani', 'sans-serif' !important;
+    font-size: x-large !important;
+    font-weight: 700 !important;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__content{
+    color: #000000 !important;
+    margin-top: 20px;
 }

@@ -22,7 +22,7 @@ export class BigvaluePipe implements PipeTransform {
       res = valeur.toPrecision(0);
     }
     
-    return res;
+    return res + ' €';
   }
 
 }

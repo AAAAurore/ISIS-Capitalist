@@ -1,0 +1,4 @@
+.snack-container > div {
+    display: table-cell;
+    vertical-align: middle;
+}

@@ -1,0 +1,31 @@
+.popUp{
+    background: #808080;
+    max-width: 600px;
+}
+
+.noManager{
+    font-family: 'Rajdhani', 'sans-serif';
+    font-size: x-large;
+    font-weight: 700;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.manager{
+    background: #c8c8c8ba;
+    border: 2px solid #808080;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+    margin-top: 20px;
+    max-width: 530px;
+    padding: 10px;
+}
+
+.managerLayout{
+    text-align: center;
+}
+
+.managerName{
+    margin-bottom: 10px;
+}

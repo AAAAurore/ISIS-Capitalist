@@ -25,7 +25,7 @@
 .money span{
     backdrop-filter: blur(15px);
     background-color: rgba(182, 182, 182, 0.7);
-    border: 2px solid #003b6f;
+    border: 2px solid #003B6F;
     border-radius: 30px;
     display: inline;
     font-family: 'Rajdhani', 'sans-serif';
@@ -40,17 +40,27 @@
     grid-template-columns: 20% 80%;
 }
 
-.buttons{
+.buttons {
     margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttons div {
+    display: inline-flex;
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .buttons input {
-    display: block;
     height: 100px;
-    margin-bottom: 0.5rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0.5rem;
+}
+
+.mat-badge{
+    background: #003B6F;
+    bottom: 110px;
+    color: #FFFFFF;
 }
 
 .product {

@@ -20,7 +20,7 @@ export class ProductComponent {
 
   // Label
   LabelDisabled : boolean = true;
-  labelLien : string = "/assets/labelGray.png";
+  labelLien : string = "labelGray";
   labelVisible: boolean = true;
 
   // Inputs
@@ -69,7 +69,7 @@ export class ProductComponent {
   }
 
   calculCoutTotal(){
-    return this._product.cout * Math.pow(this._product.croissance, this._product.quantite - 1);
+    return this._product.cout * Math.pow(this._product.croissance, this._product.quantite - 1) * this.calcMaxCanBuy();
   }
 
   calcMaxCanBuy(){
@@ -80,7 +80,6 @@ export class ProductComponent {
     }
     else{
       quantite = Math.floor(Math.log(-((this._world.money * (1 - this._product.croissance)) / this._product.cout) + 1) / Math.log(this._product.croissance));
-      //quantite = Math.floor(Math.log(1 - (this._world.money / this.product.cout) * (1 - this.product.croissance)) / Math.log(this.product.croissance));
     }
     return quantite;
   }
@@ -91,22 +90,21 @@ export class ProductComponent {
   }
 
   updateLabel(){
-    if(this._world.money < this._product.revenu){
-      this.labelLien = "labelGray";
-      this.LabelDisabled = true;
-    }
-    else{
-      this.labelLien = "label";
-      this.LabelDisabled = false;
-    }
-    
+    this.labelLien = this._world.money < this._product.revenu ? "labelGray" : "label";
+    this.LabelDisabled = this._world.money < this._product.revenu ? true : false;
   }
 
   calcScore(){
-    if((this._product.timeleft != 0)){
+    this.auto = !this.labelVisible && this._product.managerUnlocked;
+    
+    if(this._product.timeleft != 0 || this.auto){
+      this.run = true;
+
       this._product.timeleft -= Date.now() - this.lastUpdate;
 
       if(this._product.timeleft <= 0){
+        this.run = this._product.managerUnlocked ? true : false;
+
         this._product.timeleft = 0;
         this.progressBarValue = 0;
 
@@ -121,7 +119,7 @@ export class ProductComponent {
 
   acheterProduit(){
     this.onBuy.emit(this.calculCoutTotal());
-    this._product.quantite++;
+    this._product.quantite += this.calcMaxCanBuy();
     this.calculCoutTotal();
   }
 }

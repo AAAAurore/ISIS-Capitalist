@@ -7,11 +7,11 @@ export enum Orientation {
 
 @Component({
   selector: 'app-my-progress-bar',
-  template: '<canvas style="position: absolute; height: 25px; width: 100%;" #canvasRef></canvas>'
+  template: '<canvas style="background: #808080; border-radius: 30px; position: absolute; height: 25px; width: 100%;" #canvasRef></canvas>'
 })
 export class MyProgressBarComponent implements OnChanges, OnDestroy {
   @Input()
-  frontcolor: string = '#31b0df';
+  frontcolor: string = '#2B9AC3';
   
   @Input()
   backcolor: string = '#808080';

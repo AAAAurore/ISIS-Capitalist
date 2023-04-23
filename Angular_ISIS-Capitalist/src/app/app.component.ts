@@ -22,6 +22,8 @@ export class AppComponent {
   
   server: string;
 
+  username: string | null;
+
   // Badges des boutons
   badgeUnlocks: number = 0;
   badgeCashUpgrades: number = 0;
@@ -42,7 +44,13 @@ export class AppComponent {
 
   // Méthodes
   ngOnInit(){
+    if(!this.server){
+      this.openSnackBar("Un problème est survenu lors de la transmission d’informations entre le client et le serveur.", 'Error');
+    }
+
     this.qtmulti = this.quantites[0];
+
+    this.onUsernameChanged();
   }
 
   changeQuantite(){
@@ -60,6 +68,11 @@ export class AppComponent {
     this.world.money += p.revenu * p.quantite;
     this.world.score += p.revenu * p.quantite;
     this.updateImages();
+  }
+
+  onUsernameChanged(){
+    this.username = localStorage.getItem("username") != null ? localStorage.getItem("username") : "Doctor" + Math.floor(Math.random() * 10000)!;
+    localStorage.setItem("username", this.username!);
   }
 
   openSnackBar(message: string, type: string) {

@@ -19,7 +19,7 @@
   <div>
     <mat-form-field>
       <mat-label>ID du joueur</mat-label>
-      <input matInput placeholder="Saisissez votre ID">
+      <input matInput [(ngModel)]="username" (change)="onUsernameChanged()" placeholder="Saisissez votre ID">
     </mat-form-field>
   </div>
 </div>

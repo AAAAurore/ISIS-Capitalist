@@ -18,6 +18,8 @@ module.exports = {
             "vitesse": 500,
             "quantite": 1,
             "timeleft": 0,
+            "lastupdate": 0,
+            "unlocked": true,
             "managerUnlocked": false,
             "paliers": [
                 {
@@ -59,6 +61,8 @@ module.exports = {
             "vitesse": 5000,
             "quantite": 1,
             "timeleft": 0,
+            "lastupdate": 0,
+            "unlocked": false,
             "managerUnlocked": false,
             "paliers": [
                 {
@@ -100,6 +104,8 @@ module.exports = {
             "vitesse": 10000,
             "quantite": 1,
             "timeleft": 0,
+            "lastupdate": 0,
+            "unlocked": false,
             "managerUnlocked": false,
             "paliers": [
                 {
@@ -141,6 +147,8 @@ module.exports = {
             "vitesse": 20000,
             "quantite": 1,
             "timeleft": 0,
+            "lastupdate": 0,
+            "unlocked": false,
             "managerUnlocked": false,
             "paliers": [
                 {
@@ -182,6 +190,8 @@ module.exports = {
             "vitesse": 500,
             "quantite": 1,
             "timeleft": 0,
+            "lastupdate": 0,
+            "unlocked": false,
             "managerUnlocked": false,
             "paliers": [
                 {
@@ -223,6 +233,8 @@ module.exports = {
             "vitesse": 500,
             "quantite": 1,
             "timeleft": 0,
+            "lastupdate": 0,
+            "unlocked": false,
             "managerUnlocked": false,
             "paliers": [
                 {
@@ -257,10 +269,739 @@ module.exports = {
     ],
     "allunlocks": [
         {
-            "name": "Nom du premier unlock général",
-            "logo": "icones/premierunlock.jpg",
-            "seuil": 30,
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 1000000,
             "idcible": 0,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 2000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 3000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 4000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 5000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 6000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 7000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 8000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 9000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "All saisons",
+            "logo": "icones/DW.jpg",
+            "seuil": 10000000,
+            "idcible": 0,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 25,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 50,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 100,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 200,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 300,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 400,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 500,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 600,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 700,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 800,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 900,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 5",
+            "logo": "icones/DW5.png",
+            "seuil": 1000,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 25,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 50,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 100,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 200,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 300,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 400,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 500,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 600,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 700,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 800,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 900,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 6",
+            "logo": "icones/DW6.png",
+            "seuil": 1000,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 25,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 50,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 100,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 200,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 300,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 400,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 500,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 600,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 700,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 800,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 900,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 7",
+            "logo": "icones/DW7.png",
+            "seuil": 1000,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 25,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 50,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 100,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 200,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 300,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 400,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 500,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 600,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 700,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 800,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 900,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 8",
+            "logo": "icones/DW8.png",
+            "seuil": 1000,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 25,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 50,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 100,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 200,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 300,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 400,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 500,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 600,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 700,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 800,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 900,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 9",
+            "logo": "icones/DW9.png",
+            "seuil": 1000,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 25,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 50,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 100,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 200,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 300,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 400,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 500,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 600,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 700,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 800,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "GAIN",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 900,
+            "idcible": 6,
+            "ratio": 2,
+            "typeratio": "VITESSE",
+            "unlocked": false
+        },
+        {
+            "name": "Saison 10",
+            "logo": "icones/DW10.png",
+            "seuil": 1000,
+            "idcible": 6,
             "ratio": 2,
             "typeratio": "GAIN",
             "unlocked": false
@@ -394,7 +1135,7 @@ module.exports = {
             "seuil": 1000,
             "idcible": 1,
             "ratio": 0,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
@@ -403,7 +1144,7 @@ module.exports = {
             "seuil": 1500,
             "idcible": 2,
             "ratio": 0,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
@@ -412,7 +1153,7 @@ module.exports = {
             "seuil": 2000,
             "idcible": 3,
             "ratio": 0,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
@@ -421,7 +1162,7 @@ module.exports = {
             "seuil": 4000,
             "idcible": 4,
             "ratio": 0,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
@@ -430,7 +1171,7 @@ module.exports = {
             "seuil": 7000,
             "idcible": 5,
             "ratio": 0,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
@@ -439,7 +1180,7 @@ module.exports = {
             "seuil": 11000,
             "idcible": 6,
             "ratio": 0,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         }
     ]

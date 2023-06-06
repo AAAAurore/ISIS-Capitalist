@@ -1,12 +1,12 @@
-<div class="label" *ngIf="labelVisible && _product != _world.products[0]">
-    <input type="image" [src]="'/assets/' + labelLien + '.png'" id="labelImage" [disabled]="LabelDisabled" (click)="labelVisible = false"/>
+<div class="label" *ngIf="!_product.unlocked && _product != _world.products[0]">
+    <input type="image" [attr.src]="server + 'icones/' + labelLien + '.png'" id="labelImage" [disabled]="LabelDisabled" (click)="_product.unlocked = true"/>
     <label class="labelName" for="labelImage">
         {{ _product.name }}
         <mat-divider></mat-divider>
-        {{ _product.revenu | number }}
+        {{ _product.revenu | currency: 'EUR': 'symbol' }}
     </label>
 </div>
-<mat-card class="carte" id="carte" *ngIf="!labelVisible || _product == _world.products[0]">
+<mat-card class="carte" id="carte" *ngIf="_product.unlocked || _product == _world.products[0]">
     <mat-card-content class="carteProduct">
         <div class="product">
             <div class="lesDeux">
@@ -21,7 +21,7 @@
             </div>
             <div class="right">
                 <div class="progressValue">
-                    <div class="progressBar">
+                    <div>
                         <app-my-progress-bar [run]="run" [auto]="auto" [vitesse]="_product.vitesse"
                             [initialValue]="progressBarValue"></app-my-progress-bar>
                     </div>
@@ -30,14 +30,16 @@
                     </div>
                 </div>
                 <div class="bas">
-                    <button mat-fab extended class="buy" (click)="acheterProduit()"
-                        [disabled]="_world.money < calculCoutTotal() || _world.money == 0">
+                    <button mat-fab extended class="buy" (click)="buyProduct()"
+                        [disabled]="_world.money < calcTotalCost() || _world.money == 0">
                         <div class="inButton">
-                            <div style="display:flex; margin: auto;">
+                            <div class="firstInButton">
                                 <mat-icon>add_shopping_cart</mat-icon>
                                 Acheter<br />x {{ calcMaxCanBuy() | number }}
                             </div>
-                            <div style="margin-left: auto; margin-top: auto;">{{ calculCoutTotal() | currency: 'EUR': 'symbol' }}</div>
+                            <div class="secondInButton">
+                                {{ calcTotalCost() | currency: 'EUR': 'symbol' }}
+                            </div>
                         </div>
                     </button>
                     <mat-card class="carteTimeLeft">

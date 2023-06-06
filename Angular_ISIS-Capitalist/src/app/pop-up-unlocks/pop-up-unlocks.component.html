@@ -1,0 +1,71 @@
+<div class="popUp">
+    <h1 mat-dialog-title>Unlocks</h1>
+    <mat-dialog-content>
+        Vous souhaites maximiser vos profits ? Cherchez pas plus loin ! Amenez vos investissements à ces quotas pour débloquer de jolis bonus de profit !
+        <div class="unlocks" *ngIf="!gallery">
+            <mat-grid-list cols="6" rowHeight="290px">
+                <ng-container *ngFor="let unlockName of unlocks | keyvalue">
+                    <ng-container *ngFor="let unlockSeuil of unlockName.value; let i = index">
+                        <mat-grid-tile *ngIf="!unlockSeuil.unlocked && i == 0">
+                            <mat-card class="unlock">
+                                <div *ngIf="server">
+                                    <img [attr.src]="server + unlockSeuil.logo" class="round"/>
+                                </div>
+                                <div>
+                                    <mat-card-content class="layout">
+                                        <div class="name">
+                                            {{ unlockSeuil.name }}
+                                        </div>
+                                        <mat-divider></mat-divider>
+                                        <br />
+                                        <div>
+                                            {{ unlockSeuil.seuil | number}}
+                                        </div>
+                                    </mat-card-content>
+                                </div>
+                                <button mat-fab extended disabled="true">
+                                    x {{ unlockSeuil.ratio }}
+                                </button>
+                            </mat-card>
+                        </mat-grid-tile>
+                    </ng-container>
+                </ng-container>
+            </mat-grid-list>
+            <br />
+            <button mat-fab extended (click)="gallery = true" [hidden]="gallery">
+                <mat-icon>photo_library</mat-icon>
+                Galerie
+            </button>
+        </div>
+        <div *ngIf="gallery">
+            <br />
+            <button mat-fab extended (click)="gallery = false" [hidden]="!gallery">
+                <mat-icon>keyboard_return</mat-icon>
+                Retour
+            </button>
+            <mat-grid-list cols="6" rowHeight="230px">
+                <mat-grid-tile *ngFor="let unlock of world.allunlocks">
+                    <mat-card class="unlock">
+                            <div class="icon">
+                                <mat-icon *ngIf="unlock.unlocked" matBadgeSize="large">check</mat-icon>
+                                <mat-icon *ngIf="!unlock.unlocked" matBadgeSize="large">lock</mat-icon>
+                            </div>
+                            <div *ngIf="server">
+                                <img [attr.src]="server + unlock.logo" class="round"/>
+                            </div>
+                        <div>
+                            <mat-card-content class="layout">
+                                <div>
+                                    {{ unlock.seuil | number}}
+                                </div>
+                            </mat-card-content>
+                        </div>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Fermer</button>
+    </mat-dialog-actions>
+</div>

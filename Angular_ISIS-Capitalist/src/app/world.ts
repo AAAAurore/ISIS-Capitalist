@@ -6,7 +6,7 @@ export class World {
     totalangels: number = 0;
     activeangels: number = 0;
     angelbonus: number = 0;
-    lastupdate: number = 0;
+    lastupdate: string = "";
     products : Product[] ;
     allunlocks: Palier[];
     upgrades: Palier[];
@@ -32,6 +32,8 @@ export class Product {
     vitesse: number = 0;
     quantite: number = 0;
     timeleft: number = 0;
+    lastupdate: string = "";
+    unlocked: boolean = false;
     managerUnlocked: boolean = false;
     paliers : Palier[];
 

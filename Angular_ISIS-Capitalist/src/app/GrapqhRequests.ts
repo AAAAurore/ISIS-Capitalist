@@ -21,6 +21,8 @@ const GET_WORLD = gql`
         vitesse
         quantite
         timeleft
+        lastupdate
+        unlocked
         managerUnlocked
         paliers {
           name
@@ -68,6 +70,31 @@ const GET_WORLD = gql`
         typeratio
         unlocked
       }
+    }
+  }
+`;
+
+const ACHETER_QT_PRODUIT = gql`
+  mutation acheterQtProduit($id: Int!, $quantite: Int!) {
+    acheterQtProduit(id: $id, quantite: $quantite) {
+      id
+      quantite
+    }
+  }
+`;
+
+const LANCER_PRODUCTION = gql`
+  mutation lancerProductionProduit($id: Int!) {
+    lancerProductionProduit(id: $id) {
+      id
+    }
+  }
+`;
+
+const ENGAGER_MANAGER = gql`
+  mutation engagerManager($name: String!) {
+    engagerManager(name: $name) {
+      name
     }
   }
 `;

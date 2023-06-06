@@ -1,0 +1,24 @@
+.popUp {
+    max-width: 900px;
+}
+
+.unlocks {
+    text-align: center;
+}
+
+.unlock {
+    background: #c8c8c8ba;
+    border: 2px solid #808080;
+    border-radius: 30px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.icon {
+    position: relative;
+}
+
+button[mat-fab][extended]:disabled {
+    background-color: #2B9AC3;
+    color: black;
+}

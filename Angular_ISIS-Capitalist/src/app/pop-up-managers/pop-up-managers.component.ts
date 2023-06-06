@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Palier, Product, World } from '../world';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Palier, World } from '../world';
+import { RestserviceService } from '../restservice.service';
 
 @Component({
   selector: 'app-pop-up-managers',
@@ -9,20 +10,26 @@ import { Palier, Product, World } from '../world';
 })
 export class PopUpManagersComponent {
 
+  // Côté serveur
   server: string = this.data.server;
 
+  // Monde
   world: World = this.data.world;
 
+  // Si pas de manager
   msgNoManager: string = "";
   
-  // Outputs
+  // Output
   @Output()
   update: EventEmitter<Palier> = new EventEmitter<Palier>();
 
   // Constructeur
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {};
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private restService: RestserviceService) {};
 
   // Méthodes
+  // Embaucher un manager
   hireManager(manager: Palier){
     if(this.world.money >= manager.seuil){
       this.world.money-= manager.seuil;
@@ -33,5 +40,9 @@ export class PopUpManagersComponent {
     if(this.world.managers.filter(m => !m.unlocked).length == 0){
       this.msgNoManager = "Oh non, il n'y plus de managers à embaucher !";
     }
+    
+    this.restService.engagerManager(manager).catch(reason =>
+      console.log("Erreur: " + reason)
+    );
   }
 }

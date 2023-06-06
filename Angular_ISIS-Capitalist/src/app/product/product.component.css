@@ -1,26 +1,26 @@
-.label{
+.label {
     height: 147px;
     position: relative;
     text-align: center;
     width: 518px;
 }
 
-.labelName{
+.labelName {
     bottom: 45px;
     font-family: 'Rajdhani', 'sans-serif';
     font-size: x-large;
     font-weight: 700;
-    position: absolute;
     left: 190px;
+    position: absolute;
 }
 
-.carte{
+.carte {
     height: 147px;
     width: 518px;
     --mdc-elevated-card-container-color: none;
 }
 
-::ng-deep .carteProduct{
+::ng-deep .carteProduct {
     backdrop-filter: blur(15px);
     background-color: rgba(255, 255, 255, 0.2);
     -webkit-backdrop-filter: blur(15px);
@@ -48,30 +48,23 @@
     position: absolute;
 }
 
-.mat-badge-content{
+.mat-badge-content {
     background: rgba(255, 255, 255, 0.8);
     color: #000000;
 }
 
-.right{
-    align-content: center;
+.right {
+    align-content: space-evenly;
     display: grid;
 }
 
 .progressValue {
-    bottom: 18px;
     position: relative;
 }
 
 .valueScore {
     padding-left: 50%;
     padding-top: 3px;
-    position: absolute;
-}
-
-.barQuantite {
-    align-items: center;
-    bottom: 10px;
     position: absolute;
 }
 
@@ -82,31 +75,38 @@
     padding-top: 20px;
 }
 
-button{
+.buy {
     display: block;
-}
-
-.buy{
     margin-right: 20px;
     padding-bottom: 5px !important;
     padding-top: 5px !important;
 }
 
-.inButton{
+.inButton {
     display: grid;
     grid-template-columns: 50% 50%;
 }
 
-.timeLeft{
+.firstInButton {
+    display:flex;
+    margin: auto;
+}
+
+.secondInButton {
+    margin-left: auto;
+    margin-top: auto;
+}
+
+.carteTimeLeft {
+    background: rgba(255, 255, 255, 0.8);
+    width: 90px;
+}
+
+.timeLeft {
     display: inline-block;
     text-align: center;
 }
 
-.timeLeft div{
+.timeLeft div {
     text-align: center;
-}
-
-.carteTimeLeft{
-    background: rgba(255, 255, 255, 0.8);
-    width: 90px;
 }

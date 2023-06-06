@@ -43,7 +43,25 @@ button[mat-fab][extended]:disabled{
     text-align: center;
 }
 
+h1{
+    font-family: 'Rajdhani', 'sans-serif' !important;
+    font-size: x-large !important;
+    font-weight: 700 !important;
+}
+
 .mat-mdc-dialog-container .mdc-dialog__content{
     color: #000000 !important;
     margin-top: 20px;
+}
+
+.popUp{
+    background: #808080;
+}
+
+.layout{
+    text-align: center;
+}
+
+.name{
+    margin-bottom: 10px;
 }

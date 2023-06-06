@@ -1,52 +1,61 @@
-<div class="header">
-  <div class="logo">
-    <div *ngIf="server">
-      <img [attr.src]="server + world.logo" class="round"/>
+<div *ngIf="server">
+  <div class="header">
+    <div class="logo">
+      <div>
+        <img [attr.src]="server + world.logo" class="round"/>
+      </div>
+      <div>
+        <div class="logoName">{{ world.name }}</div>
+      </div>
+      </div>
+    <div class="money">
+      <span [innerHTML]="world.money | bigvalue"></span>
     </div>
     <div>
-      <div class="logoName">{{ world.name }}</div>
+      <button mat-fab extended (click)="changeMultiplicateur()">
+        <mat-icon>clear icon</mat-icon>
+        Acheter<br />{{ qtmulti }}
+      </button>
     </div>
+    <div>
+      <mat-form-field>
+        <mat-label>ID du joueur</mat-label>
+        <input matInput [(ngModel)]="username" (change)="onUsernameChanged()" placeholder="Saisissez votre ID">
+      </mat-form-field>
     </div>
-  <div class="money">
-    <span [innerHTML]="world.money | bigvalue"></span>
   </div>
-  <div>
-    <button mat-fab extended (click)="changeQuantite()">
-      <mat-icon>clear icon</mat-icon>
-      Acheter<br />{{ qtmulti }}
-    </button>
-  </div>
-  <div>
-    <mat-form-field>
-      <mat-label>ID du joueur</mat-label>
-      <input matInput [(ngModel)]="username" (change)="onUsernameChanged()" placeholder="Saisissez votre ID">
-    </mat-form-field>
+  <div class="main">
+    <div class="buttons">
+      <div>
+        <input type="image" [attr.src]="server + 'icones/carteUnlocks.png'" (click)="popUpUnlocks()">
+      </div>
+      <div>
+        <input type="image" [attr.src]="server + 'icones/carteCashUpgrades.png'" (click)="popUpCashUpgrades()"/>
+        <div [matBadge]="badgeCashUpgrades | number" [matBadgeHidden]="badgeCashUpgrades == 0" matBadgeSize="large"></div>
+      </div>
+      <div>
+        <input type="image" [attr.src]="server + 'icones/carteAngelUpgrades.png'" (click)="popUpAngelUpgrades()"/>
+        <div [matBadge]="badgeAngelUpgrades | number" [matBadgeHidden]="badgeAngelUpgrades == 0" matBadgeSize="large"></div>
+      </div>
+      <div>
+        <input type="image" [attr.src]="server + 'icones/carteManagers.png'" (click)="popUpManagers()"/>
+        <div [matBadge]="badgeManagers | number" [matBadgeHidden]="badgeManagers == 0" matBadgeSize="large"></div>
+      </div>
+      <div>
+        <input type="image" [attr.src]="server + 'icones/carteInvestigors.png'" (click)="popUpInvestigors()"/>
+      </div>
+    </div>
+    <div class="product">
+        <app-product *ngFor="let product of world.products" [product]="product" [world]="world" [qtmulti]="qtmulti"
+          (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)" class="product col-md-6"></app-product>
+    </div>
   </div>
 </div>
-<div class="main">
-  <div class="buttons">
-    <div>
-      <input type="image" src="/assets/carteUnlocks.png" (click)="popUpUnlocks()">
-      <div [matBadge]="badgeUnlocks | number" [matBadgeHidden]="badgeUnlocks == 0" matBadgeSize="large"></div>
-    </div>
-    <div>
-      <input type="image" src="/assets/carteCashUpgrades.png" (click)="popUpCashUpgrades()"/>
-      <div [matBadge]="badgeCashUpgrades | number" [matBadgeHidden]="badgeCashUpgrades == 0" matBadgeSize="large"></div>
-    </div>
-    <div>
-      <input type="image" src="/assets/carteAngelUpgrades.png" (click)="popUpAngelUpgrades()"/>
-      <div [matBadge]="badgeAngelUpgrades | number" [matBadgeHidden]="badgeAngelUpgrades == 0" matBadgeSize="large"></div>
-    </div>
-    <div>
-      <input type="image" src="/assets/carteManagers.png" (click)="popUpManagers()"/>
-      <div [matBadge]="badgeManagers | number" [matBadgeHidden]="badgeManagers == 0" matBadgeSize="large"></div>
-    </div>
-    <div>
-      <input type="image" src="/assets/carteInvestigors.png" (click)="popUpInvestigors()"/>
-    </div>
+<div class="error" *ngIf="!server && tempsEcoule">
+  <div>
+    <img src="/assets/error.png" class="errorLogo"/>
   </div>
-  <div class="product">
-      <app-product *ngFor="let product of world.products" [product]="product" [world]="world" [qtmulti]="qtmulti"
-        (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)" class="product col-md-6"></app-product>
+  <div>
+    <h1>&nbsp;Un problème est survenu lors de la transmission d’informations entre le client et le serveur</h1>
   </div>
 </div>

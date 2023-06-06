@@ -72,3 +72,20 @@
 mat-card{
     display: inline-block;
 }
+
+.error {
+    height: 266.567px;
+    left: 50%;
+    margin-left: -469.05px;
+    margin-top: -133.2835px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 938.1px;
+}
+
+.errorLogo {
+    
+    height: 200px;
+    width: 200px;
+}

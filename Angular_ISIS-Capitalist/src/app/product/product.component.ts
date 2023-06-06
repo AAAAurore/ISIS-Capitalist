@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product, World } from '../world';
+import { Palier, Product, World } from '../world';
 import { RestserviceService } from '../restservice.service';
 
 @Component({
@@ -11,23 +11,30 @@ export class ProductComponent {
 
   //Barre de progression
   auto: boolean = false;
-  lastUpdate: number = 0;
   progressBarValue: number = 0;
   run: boolean = false;
 
   // Côté serveur
   server: string;
 
-  // Label
+  // Label pour les produits qui ne sont pas débloqué
   LabelDisabled : boolean = true;
   labelLien : string = "labelGray";
-  labelVisible: boolean = true;
 
   // Inputs
   _product: Product;
   @Input()
   set product(value: Product) {
     this._product = value;
+    if (this._product && this._product.timeleft > 0) {
+      this._world.lastupdate = Date.now().toString();
+      this._product.lastupdate = Date.now().toString();
+      this.progressBarValue = ((this._product.vitesse - this._product.timeleft) / this._product.vitesse) * 100;
+      //this.progressBarValue.set(progress);
+      //this.progressBarValue.animate(1, { duration: this.product.timeleft });
+      this.run = true;
+      this.auto = this._product.unlocked && this._product.managerUnlocked;
+    }
   }
 
   _qtmulti: string;
@@ -50,10 +57,10 @@ export class ProductComponent {
 
   // Outputs
   @Output()
-  notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
+  notifyProduction: EventEmitter<{product: Product, nbProduction: number}> = new EventEmitter<{product: Product, nbProduction: number}>();
 
   @Output()
-  onBuy: EventEmitter<number> = new EventEmitter<number>();
+  onBuy: EventEmitter<{product: Product, coutProduct: number}> = new EventEmitter<{product: Product, coutProduct: number}>();
 
   // Constructeur
   constructor(private restService: RestserviceService) {
@@ -68,10 +75,12 @@ export class ProductComponent {
     }, 100);
   }
 
-  calculCoutTotal(){
+  // Calculer le coût total du produit
+  calcTotalCost(){
     return this._product.cout * Math.pow(this._product.croissance, this._product.quantite - 1) * this.calcMaxCanBuy();
   }
 
+  // Calculer la quantité max
   calcMaxCanBuy(){
     let quantite: number = 0;
     
@@ -84,42 +93,82 @@ export class ProductComponent {
     return quantite;
   }
 
+  // Lancer la production
   clickIcon(){
-    this._product.timeleft = this._product.vitesse;
-    this.lastUpdate = Date.now();
+    if(this._product.timeleft == 0){
+      this._product.timeleft = this._product.vitesse;
+      this.run = true;
+      this._world.lastupdate = Date.now().toString();
+    }
   }
 
+  // Débloquer le produit
   updateLabel(){
     this.labelLien = this._world.money < this._product.revenu ? "labelGray" : "label";
     this.LabelDisabled = this._world.money < this._product.revenu ? true : false;
   }
 
-  calcScore(){
-    this.auto = !this.labelVisible && this._product.managerUnlocked;
-    
-    if(this._product.timeleft != 0 || this.auto){
-      this.run = true;
-
-      this._product.timeleft -= Date.now() - this.lastUpdate;
-
-      if(this._product.timeleft <= 0){
-        this.run = this._product.managerUnlocked ? true : false;
-
-        this._product.timeleft = 0;
-        this.progressBarValue = 0;
-
-        this.notifyProduction.emit(this._product);
-        this.calcMaxCanBuy();
-      }
-      else{
-        this.progressBarValue = ((this._product.vitesse - this._product.timeleft) / this._product.vitesse) * 100;
-      }
+  // Mettre à jour les Unlocks / Upgrades / Angels Upgrades
+  calcUpgrade(palier: Palier){
+    palier.unlocked = true;
+    if (palier.typeratio == "VITESSE") {
+      this._product.vitesse = this._product.vitesse / palier.ratio;
+    }
+    else if (palier.typeratio == "GAIN") {
+      this._product.revenu = this._product.revenu * palier.ratio;
     }
   }
 
-  acheterProduit(){
-    this.onBuy.emit(this.calculCoutTotal());
+  // Calculer le score
+  calcScore(){
+    let elapseTime: number = 0;
+    let nbProduction: number = 0;
+
+    this.auto = this._product.unlocked && this._product.managerUnlocked;
+
+    if (this._product.timeleft != 0 || this.auto) {
+      elapseTime = Date.now() - Number(this._product.lastupdate);
+      this._product.lastupdate = Date.now().toString();
+
+      if (!this._product.managerUnlocked) {
+        if (elapseTime > this._product.timeleft) {          
+          nbProduction = 1;
+          this._product.timeleft = 0;
+          this.progressBarValue = 0;
+          this.run = false;
+        }
+        else {
+          nbProduction = 0;
+          this._product.timeleft -= elapseTime;
+        }
+      }
+      else {
+        this.run = true;
+        if (elapseTime > this._product.timeleft) {
+          nbProduction = 1 + (elapseTime - this._product.timeleft) / this._product.vitesse;
+          this._product.timeleft  = this._product.vitesse - (elapseTime - this._product.timeleft) % this._product.vitesse;
+        }
+        else {
+          nbProduction = 0;
+          this._product.timeleft -= elapseTime;
+        }
+      }
+
+      this.notifyProduction.emit({product: this._product, nbProduction : nbProduction});
+      this.calcMaxCanBuy();
+      this.restService.lancerProduction(this._product).catch(reason =>
+        console.log("Erreur: " + reason)
+      );
+    }
+  }
+
+  // Acheter le produit
+  buyProduct(){
     this._product.quantite += this.calcMaxCanBuy();
-    this.calculCoutTotal();
+    this.onBuy.emit({product: this._product, coutProduct : this.calcTotalCost()});
+    this.restService.acheterQtProduit(this._product).catch(reason =>
+      console.log("Erreur: " + reason)
+    );
+    this.calcTotalCost();
   }
 }

@@ -11,17 +11,17 @@
                     <img [attr.src]="server + manager.logo" class="round"/>
                 </div>
                 <div>
-                    <mat-card-content class="managerLayout">
-                        <div class="managerName">
+                    <mat-card-content class="layout">
+                        <div class="name">
                             {{ manager.name }}
                         </div>
-                        <div class="managerCible">
+                        <div>
                             {{ world.products[manager.idcible - 1].name }}
                         </div>
                         <br />
                         <mat-divider></mat-divider>
                         <br />
-                        <div class="managerCost">
+                        <div>
                             {{ manager.seuil | number}}
                         </div>
                     </mat-card-content>

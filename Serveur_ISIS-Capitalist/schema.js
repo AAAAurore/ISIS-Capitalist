@@ -27,6 +27,8 @@ module.exports = gql`
         vitesse: Int
         quantite: Int
         timeleft: Int
+        lastupdate: String
+        unlocked: Boolean
         managerUnlocked: Boolean
         paliers: [Palier]
     }
@@ -39,7 +41,7 @@ module.exports = gql`
         totalangels: Int
         activeangels: Int
         angelbonus: Int
-        lastupdate: Int
+        lastupdate: String
         products: [Product]
         allunlocks: [Palier]
         upgrades: [Palier]

@@ -1,40 +1,40 @@
 <div class="popUp">
-    <h1 mat-dialog-title>Les managers simplifient la vie !</h1>
+    <h1 mat-dialog-title>Cash Upgrades</h1>
     <mat-dialog-content>
-        Embauchez-en un pour gérer votre entreprise à votre place ou pour maximiser l'efficacité le tout pour un seul paiement facile !
-        <div class="noManager">
-            {{ msgNoManager }}
+        Il faut dépenser de l'argent pour gagner de l'argent ! Achetez ces mises à niveau de qualité supérieure pour donner un coup de pouce à vos entreprises.
+        <div class="noUpgrade">
+            {{ msgNoUpgrade }}
         </div>
-        <div *ngFor="let manager of world.managers">
-            <mat-card class="manager" *ngIf="!manager.unlocked">
+        <div *ngFor="let upgrade of world.upgrades">
+            <mat-card class="upgrade" *ngIf="!upgrade.unlocked">
                 <div *ngIf="server">
-                    <img [attr.src]="server + manager.logo" class="round"/>
+                    <img [attr.src]="server + upgrade.logo" class="round"/>
                 </div>
                 <div>
                     <mat-card-content class="layout">
                         <div class="name">
-                            {{ manager.name }}
+                            {{ upgrade.name }}
                         </div>
                         <div>
-                            {{ world.products[manager.idcible - 1].name }}
+                            {{ world.products[upgrade.idcible - 1].name }}
                         </div>
                         <br />
                         <mat-divider></mat-divider>
                         <br />
                         <div>
-                            {{ manager.seuil | number}}
+                            {{ upgrade.seuil | number}}
                         </div>
                         <br />
                         <div>
-                            {{ manager.typeratio }} x {{ manager.ratio | number}}
+                            {{ upgrade.typeratio }} x {{ upgrade.ratio | number}}
                         </div>
                     </mat-card-content>
                 </div>
                 <mat-card-actions align="start">
-                    <button mat-fab extended (click)="hireManager(manager)"
-                        [disabled]="world.money < manager.seuil">
-                        <mat-icon>work</mat-icon>
-                        Embaucher
+                    <button mat-fab extended (click)="buyUpgrade(upgrade)"
+                        [disabled]="world.money < upgrade.seuil">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                        Acheter
                     </button>
                 </mat-card-actions>
             </mat-card>

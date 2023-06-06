@@ -38,18 +38,32 @@ function savePurchase(args, context) {
 
             if (quantiteMin >= a.seuil) {
                 a.unlocked = true;
+                world.products.forEach(p => {
+                    if (a.typeratio == "VITESSE") {
+                        p.vitesse = p.vitesse / a.ratio;
+                    }
+                    else if (a.typeratio == "GAIN") {
+                        p.revenu = p.revenu * a.ratio;
+                    }
+                })
             }
         })
 
         unlocksProduct.forEach(u => {
             if (product.quantite >= u.seuil) {
                 u.unlocked = true;
+                if (u.typeratio == "VITESSE") {
+                    product.vitesse = product.vitesse / u.ratio;
+                }
+                else if (u.typeratio == "GAIN") {
+                    product.revenu = product.revenu * u.ratio;
+                }
             }
         });
 
         saveWorld(context);
     }
-    else{
+    else {
         throw new Error(
             `Le produit avec l'identifiant ${id} n'existe pas.`
         )
@@ -59,7 +73,6 @@ function savePurchase(args, context) {
 function saveProduction(args, context) {
     let world = context.world;
     let id = args.id;
-
     let product = world.products.find(p => p.id == id);
     
     if(product) {
@@ -67,7 +80,7 @@ function saveProduction(args, context) {
 
         saveWorld(context);
     }
-    else{
+    else {
         throw new Error(
             `Le produit avec l'identifiant ${id} n'existe pas.`
         )
@@ -89,20 +102,58 @@ function saveManager(args, context) {
 
             saveWorld(context);
         }
-        else{
+        else {
             throw new Error(
                 `Le produit avec l'identifiant ${id} n'existe pas.`
             )
         }
     }
-    else{
+    else {
         throw new Error(
             `Le manager avec l'identifiant ${id} n'existe pas.`
         )
     }
 }
 
-function saveScore(context){
+
+function saveUpgrade(args, context) {
+    let world = context.world;
+    let name = args.name;
+
+    let upgrade = world.upgrades.find(u => u.name == name);
+
+    if(upgrade) {
+        upgrade.unlocked = true;
+
+        if(upgrade.idcible == 0) {
+            world.products.forEach(p => {
+                if (upgrade.typeratio == "VITESSE") {
+                    p.vitesse = p.vitesse / upgrade.ratio;
+                }
+                else if (upgrade.typeratio == "GAIN") {
+                    p.revenu = p.revenu * upgrade.ratio;
+                }
+            })
+        }
+        else {
+            if (upgrade.typeratio == "VITESSE") {
+                p.vitesse = p.vitesse / upgrade.ratio;
+            }
+            else if (upgrade.typeratio == "GAIN") {
+                p.revenu = p.revenu * upgrade.ratio;
+            }
+        }
+        
+        saveWorld(context);
+    }
+    else {
+        throw new Error(
+            `Upgrade ${id} n'existe pas.`
+        )
+    }
+}
+
+function saveScore(context) {
     let world = context.world;
     let products = world.products;
 
@@ -147,7 +198,7 @@ function saveScore(context){
             }
         });
     }
-    else{
+    else {
         throw new Error(
             `Il n'y a aucun produit.`
         )
@@ -169,6 +220,7 @@ module.exports = {
             return context.world;
         },
         lancerProductionProduit(parent, args, context) {
+            console.log("aaaaaaaaaaaaaaaaaaaaa")
             saveScore(context);
             saveProduction(args, context);
             return context.world;
@@ -178,5 +230,10 @@ module.exports = {
             saveManager(args, context);
             return context.world;
         },
+        acheterCashUpgrade(parent, args, context) {
+            saveScore(context);
+            saveUpgrade(args, context);
+            return context.world;
+        }
     }
 };

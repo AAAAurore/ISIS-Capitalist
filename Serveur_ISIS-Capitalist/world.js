@@ -1014,12 +1014,12 @@ module.exports = {
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
             "name": "Sonic Screwdriver",
-            "logo": "icones/socic.png",
+            "logo": "icones/sonic.png",
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
@@ -1032,7 +1032,7 @@ module.exports = {
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
@@ -1050,7 +1050,7 @@ module.exports = {
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
@@ -1068,7 +1068,7 @@ module.exports = {
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
@@ -1086,7 +1086,7 @@ module.exports = {
             "seuil": 1e3,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {

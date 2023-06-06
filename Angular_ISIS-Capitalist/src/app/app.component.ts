@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { PopUpUnlocksComponent } from './pop-up-unlocks/pop-up-unlocks.component';
 import { ProductComponent } from './product/product.component';
+import { PopUpUpgradesComponent } from './pop-up-upgrades/pop-up-upgrades.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent {
   
   server: string;
 
-  username: string | null;
+  username: string = "";
 
   // Badges des boutons
   badgeCashUpgrades: number = 0;
@@ -54,9 +55,15 @@ export class AppComponent {
   ngOnInit() {
     this.qtmulti = this.quantites[0];
 
-    this.onUsernameChanged();
+    let userStocke = localStorage.getItem("username");
+    if (!userStocke) {
+      userStocke = "Doctor" + Math.floor(Math.random() * 10000);
+    }
+    this.username = userStocke;
+    this.restService.setUser(this.username);
   }
 
+  // Calculer le temps écoulé du chargement de serveur afin d'afficher le message d'erreur si nécessaire
   calcTempsEcoule() {
     for(var i = 1; i <= 5; i++) {
       setTimeout("", 1000);
@@ -66,18 +73,17 @@ export class AppComponent {
     }
   }
 
-  // non c'est le multiplicateur d'achat
-  // ok j'ai comrpis
+  // Changer le multiplicateur
   changeMultiplicateur() {
     let quantite: string = this.quantites[this.quantites.indexOf(this.qtmulti) + 1];
     
     this.qtmulti = quantite == undefined ? this.quantites[0] : quantite;
   }
 
-
+  // Acheter + Contrôler les Unlocks + Upgrades + Angels Upgrades
   onBuy(parametres: any) {
     this.world.money -= parametres.coutProduct;
-    this.updateImages();
+    this.updateBadges();
 
     let allUnlocks: Palier[] = this.world.allunlocks.filter(a => a.idcible == 0);
     let unlocksProduct: Palier[] = this.world.allunlocks.filter(a => a.idcible == parametres.product.id);
@@ -92,7 +98,7 @@ export class AppComponent {
 
       if (quantiteMin >= a.seuil) {
         this.productsComponent.forEach(p => p.calcUpgrade(a));
-        this.openSnackBar("AllUnlock (x" + a.ratio + " " + a.typeratio + ") de tous les produits a été débloqué !", 'Success');
+        this.openSnackBar("AllUnlock (x" + a.ratio + " " + a.typeratio + ") pour tous les produits a été débloqué !", 'Success');
       }
     })
 
@@ -104,17 +110,19 @@ export class AppComponent {
     });
   }
 
+  // Produire
   onProductionDone(parametres: any) {
     for(var i = 0; i < parametres.nbProduction; i++) {
       this.world.money += parametres.product.revenu * parametres.product.quantite;
       this.world.score += parametres.product.revenu * parametres.product.quantite;
-      this.updateImages();
+      this.updateBadges();
     }
   }
 
+  // Changer de nom d'utilisateur
   onUsernameChanged() {
-    this.username = localStorage.getItem("username") != null ? localStorage.getItem("username") : "Doctor" + Math.floor(Math.random() * 10000)!;
-    localStorage.setItem("username", this.username!);
+   localStorage.setItem("username", this.username);
+   this.restService.setUser(this.username);
   }
 
   //Afficher un SnackBar
@@ -127,6 +135,7 @@ export class AppComponent {
     });
   }
 
+  // Afficher le pop-up des Unlocks
   popUpUnlocks() {
     this.dialog.open(PopUpUnlocksComponent, {
       data: {
@@ -136,14 +145,37 @@ export class AppComponent {
     });
   }
 
+  // Afficher le pop-up des Upgrades
   popUpCashUpgrades() {
+    const dialogRef = this.dialog.open(PopUpUpgradesComponent, {
+      data: {
+        server: this.server,
+        world: this.world
+      }
+    });
 
+    dialogRef.componentInstance.update.subscribe((upgrade) => {
+      this.updateBadges();
+
+      let message: string = "";
+      if(upgrade.idcible == 0) {
+        this.productsComponent.forEach(p => p.calcUpgrade(upgrade));
+        message = "AllUpgrade " + upgrade.name + "\" pour tous les produits a été acheté avec succès !";
+      }
+      else {
+        this.productsComponent.toArray()[upgrade.idcible - 1].calcUpgrade(upgrade);
+        message = "Upgrade " + upgrade.name + "\" du produit \"" + this.world.products[upgrade.idcible - 1].name + "\" a été acheté avec succès !";
+      }
+      this.openSnackBar(message, 'Success');
+    });
   }
   
+  // Afficher le pop-up des Angels Upgrades
   popUpAngelUpgrades() {
 
   }
 
+  // Afficher le pop-up des managers
   popUpManagers() {
     const dialogRef = this.dialog.open(PopUpManagersComponent, {
       data: {
@@ -153,16 +185,18 @@ export class AppComponent {
     });
 
     dialogRef.componentInstance.update.subscribe((manager) => {
-      this.updateImages()
-      this.openSnackBar("Le manager " + manager.name + " du produit \"" + this.world.products[manager.idcible - 1].name + "\" a été embauché !", 'Success');
+      this.updateBadges()
+      this.openSnackBar("Le manager " + manager.name + " du produit \"" + this.world.products[manager.idcible - 1].name + "\" a été embauché avec succès !", 'Success');
     });
   }
 
+  // Afficher le pop-up des investisseurs
   popUpInvestigors() {
 
   }
 
-  updateImages() {
+  // Actualiser les badges
+  updateBadges() {
     var cashUpgrades: Palier[] = this.world.upgrades.filter(u => u.seuil <= this.world.money);
     var angelUpgrades: Palier[] = this.world.angelupgrades.filter(a => a.seuil <= this.world.money);
     var managers: Palier[] = this.world.managers.filter(m => m.seuil <= this.world.money);

@@ -99,4 +99,12 @@ const ENGAGER_MANAGER = gql`
   }
 `;
 
+const ACHETER_CASHUPGRADE = gql`
+  mutation acheterCashUpgrade($name: String!) {
+    acheterCashUpgrade(name: $name) {
+      name
+    }
+  }
+`;
+
 export default GET_WORLD;

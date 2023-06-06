@@ -5,6 +5,7 @@ import GET_WORLD from './GrapqhRequests';
 import ACHETER_QT_PRODUIT from './GrapqhRequests';
 import LANCER_PRODUCTION from './GrapqhRequests';
 import ENGAGER_MANAGER from './GrapqhRequests';
+import ACHETER_CASHUPGRADE from './GrapqhRequests';
 import { Palier, Product } from './world';
 
 @Injectable({
@@ -25,6 +26,10 @@ export class RestserviceService {
     }, });
   }
 
+  setUser(user: string ) {
+    this.user = user;
+  }
+
   getWorld() {
     return this.createClient().query(GET_WORLD, {}).toPromise();
   }
@@ -39,5 +44,9 @@ export class RestserviceService {
 
   engagerManager(manager: Palier) {
     return this.createClient().query(ENGAGER_MANAGER, { name: manager.name}).toPromise();
+  }
+
+  acheterCashUpgrade(upgrade: Palier) {
+    return this.createClient().query(ACHETER_CASHUPGRADE, { name: upgrade.name}).toPromise();
   }
 }

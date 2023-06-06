@@ -3,7 +3,7 @@
     <mat-dialog-content>
         Vous souhaites maximiser vos profits ? Cherchez pas plus loin ! Amenez vos investissements à ces quotas pour débloquer de jolis bonus de profit !
         <div class="unlocks" *ngIf="!gallery">
-            <mat-grid-list cols="6" rowHeight="290px">
+            <mat-grid-list cols="7" rowHeight="290px">
                 <ng-container *ngFor="let unlockName of unlocks | keyvalue">
                     <ng-container *ngFor="let unlockSeuil of unlockName.value; let i = index">
                         <mat-grid-tile *ngIf="!unlockSeuil.unlocked && i == 0">
@@ -24,7 +24,7 @@
                                     </mat-card-content>
                                 </div>
                                 <button mat-fab extended disabled="true">
-                                    x {{ unlockSeuil.ratio }}
+                                    {{ unlockSeuil.typeratio }} x {{ unlockSeuil.ratio | number}}
                                 </button>
                             </mat-card>
                         </mat-grid-tile>
@@ -43,7 +43,7 @@
                 <mat-icon>keyboard_return</mat-icon>
                 Retour
             </button>
-            <mat-grid-list cols="6" rowHeight="230px">
+            <mat-grid-list cols="7" rowHeight="290px">
                 <mat-grid-tile *ngFor="let unlock of world.allunlocks">
                     <mat-card class="unlock">
                             <div class="icon">
@@ -55,8 +55,17 @@
                             </div>
                         <div>
                             <mat-card-content class="layout">
+                                <div class="name">
+                                    {{ unlock.name }}
+                                </div>
+                                <mat-divider></mat-divider>
+                                <br />
                                 <div>
-                                    {{ unlock.seuil | number}}
+                                    {{ unlock.seuil | number }}
+                                </div>
+                                <br />
+                                <div>
+                                    {{ unlock.typeratio }} x {{ unlock.ratio | number}}
                                 </div>
                             </mat-card-content>
                         </div>

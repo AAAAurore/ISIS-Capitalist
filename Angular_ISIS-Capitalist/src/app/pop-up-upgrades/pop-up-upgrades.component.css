@@ -1,0 +1,14 @@
+.popUp {
+    max-width: 600px;
+}
+
+.upgrade {
+    background: #c8c8c8ba;
+    border: 2px solid #808080;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+    margin-top: 20px;
+    max-width: 530px;
+    padding: 10px;
+}

@@ -28,7 +28,7 @@ export class AppComponent {
   username: string = "";
 
   // Badges des boutons
-  badgeCashUpgrades: number = 0;
+  badgeUpgrades: number = 0;
   badgeAngelUpgrades: number = 0;
   badgeManagers: number = 0;
 
@@ -56,10 +56,13 @@ export class AppComponent {
     this.qtmulti = this.quantites[0];
 
     let userStocke = localStorage.getItem("username");
+
     if (!userStocke) {
       userStocke = "Doctor" + Math.floor(Math.random() * 10000);
     }
+
     this.username = userStocke;
+    localStorage.setItem("username", this.username);
     this.restService.setUser(this.username);
   }
 
@@ -90,8 +93,8 @@ export class AppComponent {
 
     allUnlocks.forEach(a => {
       let quantiteMin: number = 0;
-      this.world.products.forEach(p => {
-        if(p.quantite > quantiteMin){
+      this.world.products.forEach((p, index) => {
+        if(index == 0 || p.quantite < quantiteMin){
           quantiteMin = p.quantite;
         }
       })
@@ -146,18 +149,38 @@ export class AppComponent {
   }
 
   // Afficher le pop-up des Upgrades
-  popUpCashUpgrades() {
+  popUpUpgrades(type: string) {
+    let typeUpgrades: Palier[] = [];
+    let titre: string = '';
+    let message: string = '';
+
+    if(type != 'ANGE'){
+      typeUpgrades = this.world.upgrades;
+      titre = 'Cash Upgrades';
+      message = 'Il faut dépenser de l\'argent pour gagner de l\'argent ! Achetez ces mises à niveau de qualité supérieure pour donner un coup de pouce à vos entreprises.';
+    }
+    else{
+      typeUpgrades = this.world.angelupgrades;
+      titre = 'Angel Upgrades';
+      message = 'Il ne peut y avoir de progrès sans sacrifice. Ces mises à niveau coûtent aux investisseurs providentiels !';
+    }
+
     const dialogRef = this.dialog.open(PopUpUpgradesComponent, {
-      data: {
-        server: this.server,
-        world: this.world
-      }
-    });
+        data: {
+          server: this.server,
+          world: this.world,
+          upgrades: typeUpgrades,
+          type: type,
+          titre: titre,
+          message: message
+        }
+      });
 
     dialogRef.componentInstance.update.subscribe((upgrade) => {
       this.updateBadges();
 
       let message: string = "";
+
       if(upgrade.idcible == 0) {
         this.productsComponent.forEach(p => p.calcUpgrade(upgrade));
         message = "AllUpgrade " + upgrade.name + "\" pour tous les produits a été acheté avec succès !";
@@ -168,11 +191,6 @@ export class AppComponent {
       }
       this.openSnackBar(message, 'Success');
     });
-  }
-  
-  // Afficher le pop-up des Angels Upgrades
-  popUpAngelUpgrades() {
-
   }
 
   // Afficher le pop-up des managers
@@ -197,11 +215,11 @@ export class AppComponent {
 
   // Actualiser les badges
   updateBadges() {
-    var cashUpgrades: Palier[] = this.world.upgrades.filter(u => u.seuil <= this.world.money);
-    var angelUpgrades: Palier[] = this.world.angelupgrades.filter(a => a.seuil <= this.world.money);
+    var upgrades: Palier[] = this.world.upgrades.filter(u => u.seuil <= this.world.money);
+    var angelUpgrades: Palier[] = this.world.angelupgrades.filter(a => a.seuil <= this.world.activeangels);
     var managers: Palier[] = this.world.managers.filter(m => m.seuil <= this.world.money);
 
-    this.badgeCashUpgrades = cashUpgrades.filter(u => !u.unlocked).length;
+    this.badgeUpgrades = upgrades.filter(u => !u.unlocked).length;
     this.badgeAngelUpgrades = angelUpgrades.filter(a => !a.unlocked).length;
     this.badgeManagers = managers.filter(m => !m.unlocked).length;
   }

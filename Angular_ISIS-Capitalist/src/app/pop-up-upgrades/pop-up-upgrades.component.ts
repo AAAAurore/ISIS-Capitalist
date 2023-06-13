@@ -16,6 +16,18 @@ export class PopUpUpgradesComponent {
   // Monde
   world: World = this.data.world;
 
+  // Upgrades
+  upgrades: Palier[] = this.data.upgrades;
+
+  // Type d'Upgrade
+  type: string = this.data.type;
+
+  // Titre du pop-up
+  titre: string = this.data.titre;
+
+  // Message du pop-up
+  message: string = this.data.message;
+
   //Si pas d'Upgrade
   msgNoUpgrade: string = "";
 
@@ -29,16 +41,31 @@ export class PopUpUpgradesComponent {
     private restService: RestserviceService) {};
 
     buyUpgrade(upgrade: Palier) {
-      if(this.world.money >= upgrade.seuil){
-        this.world.money-= upgrade.seuil;
-        this.update.emit(upgrade);
+      if(this.type == 'ANGE'){
+        if(this.world.activeangels >= upgrade.seuil){
+          this.world.activeangels -= upgrade.seuil;
+          this.update.emit(upgrade);
+        }
+        if(this.world.upgrades.filter(u => !u.unlocked).length == 0){
+          this.msgNoUpgrade = "Oh non, il n'y plus d'upgrades à acheter !";
+        }
+  
+        this.restService.acheterAngelUpgrade(upgrade).catch(reason =>
+          console.log("Erreur: " + reason)
+        );
       }
-      if(this.world.upgrades.filter(u => !u.unlocked).length == 0){
-        this.msgNoUpgrade = "Oh non, il n'y plus d'upgrades à acheter !";
+      else{
+        if(this.world.money >= upgrade.seuil){
+          this.world.money -= upgrade.seuil;
+          this.update.emit(upgrade);
+        }
+        if(this.world.upgrades.filter(u => !u.unlocked).length == 0){
+          this.msgNoUpgrade = "Oh non, il n'y plus d'upgrades à acheter !";
+        }
+  
+        this.restService.acheterCashUpgrade(upgrade).catch(reason =>
+          console.log("Erreur: " + reason)
+        );
       }
-
-      this.restService.acheterCashUpgrade(upgrade).catch(reason =>
-        console.log("Erreur: " + reason)
-      );
     }
 }

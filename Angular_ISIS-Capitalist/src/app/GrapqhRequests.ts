@@ -1,6 +1,6 @@
 import {gql} from "@urql/core";
 
-const GET_WORLD = gql`
+export const GET_WORLD = gql`
   query GetWorld {
     getWorld {
       name
@@ -74,7 +74,7 @@ const GET_WORLD = gql`
   }
 `;
 
-const ACHETER_QT_PRODUIT = gql`
+export const ACHETER_QT_PRODUIT = gql`
   mutation acheterQtProduit($id: Int!, $quantite: Int!) {
     acheterQtProduit(id: $id, quantite: $quantite) {
       id
@@ -83,7 +83,7 @@ const ACHETER_QT_PRODUIT = gql`
   }
 `;
 
-const LANCER_PRODUCTION = gql`
+export const LANCER_PRODUCTION = gql`
   mutation lancerProductionProduit($id: Int!) {
     lancerProductionProduit(id: $id) {
       id
@@ -91,7 +91,7 @@ const LANCER_PRODUCTION = gql`
   }
 `;
 
-const ENGAGER_MANAGER = gql`
+export const ENGAGER_MANAGER = gql`
   mutation engagerManager($name: String!) {
     engagerManager(name: $name) {
       name
@@ -99,7 +99,7 @@ const ENGAGER_MANAGER = gql`
   }
 `;
 
-const ACHETER_CASHUPGRADE = gql`
+export const ACHETER_CASHUPGRADE = gql`
   mutation acheterCashUpgrade($name: String!) {
     acheterCashUpgrade(name: $name) {
       name
@@ -107,4 +107,10 @@ const ACHETER_CASHUPGRADE = gql`
   }
 `;
 
-export default GET_WORLD;
+export const ACHETER_ANGELUPGRADE = gql`
+  mutation acheterAngelUpgrade($name: String!) {
+    acheterAngelUpgrade(name: $name) {
+      name
+    }
+  }
+`;

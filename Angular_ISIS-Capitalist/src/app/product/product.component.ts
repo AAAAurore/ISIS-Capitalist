@@ -30,19 +30,8 @@ export class ProductComponent {
       this._world.lastupdate = Date.now().toString();
       this._product.lastupdate = Date.now().toString();
       this.progressBarValue = ((this._product.vitesse - this._product.timeleft) / this._product.vitesse) * 100;
-      //this.progressBarValue.set(progress);
-      //this.progressBarValue.animate(1, { duration: this.product.timeleft });
       this.run = true;
       this.auto = this._product.unlocked && this._product.managerUnlocked;
-    }
-  }
-
-  _qtmulti: string;
-  @Input()
-  set qtmulti(value: string) {
-    this._qtmulti = value;
-    if(this._qtmulti && this._product) {
-      this.calcMaxCanBuy();
     }
   }
 
@@ -51,6 +40,24 @@ export class ProductComponent {
   set world(value: World) {
     this._world = value;
     if(this._world && this._product) {
+      this.calcMaxCanBuy();
+    }
+  }
+
+  _money: number;
+  @Input()
+  set money(value: number) {
+    this._money = value;
+    if(this._money && this._product) {
+      this.calcMaxCanBuy();
+    }
+  }
+
+  _qtmulti: string;
+  @Input()
+  set qtmulti(value: string) {
+    this._qtmulti = value;
+    if(this._qtmulti && this._product) {
       this.calcMaxCanBuy();
     }
   }
@@ -88,7 +95,7 @@ export class ProductComponent {
       quantite = Number(this._qtmulti);
     }
     else{
-      quantite = Math.floor(Math.log(-((this._world.money * (1 - this._product.croissance)) / this._product.cout) + 1) / Math.log(this._product.croissance));
+      quantite = Math.floor(Math.log(-((this._money * (1 - this._product.croissance)) / this._product.cout) + 1) / Math.log(this._product.croissance));
     }
     return quantite;
   }
@@ -99,13 +106,17 @@ export class ProductComponent {
       this._product.timeleft = this._product.vitesse;
       this.run = true;
       this._world.lastupdate = Date.now().toString();
+      
+      this.restService.lancerProduction(this._product).catch(reason =>
+        console.log("Erreur: " + reason)
+      );
     }
   }
 
   // Débloquer le produit
   updateLabel(){
-    this.labelLien = this._world.money < this._product.revenu ? "labelGray" : "label";
-    this.LabelDisabled = this._world.money < this._product.revenu ? true : false;
+    this.labelLien = this._money < this._product.revenu ? "labelGray" : "label";
+    this.LabelDisabled = this._money < this._product.revenu ? true : false;
   }
 
   // Mettre à jour les Unlocks / Upgrades / Angels Upgrades
@@ -116,6 +127,9 @@ export class ProductComponent {
     }
     else if (palier.typeratio == "GAIN") {
       this._product.revenu = this._product.revenu * palier.ratio;
+    }
+    else{
+      this._world.angelbonus += palier.ratio;
     }
   }
 
@@ -155,10 +169,6 @@ export class ProductComponent {
       }
 
       this.notifyProduction.emit({product: this._product, nbProduction : nbProduction});
-      this.calcMaxCanBuy();
-      this.restService.lancerProduction(this._product).catch(reason =>
-        console.log("Erreur: " + reason)
-      );
     }
   }
 

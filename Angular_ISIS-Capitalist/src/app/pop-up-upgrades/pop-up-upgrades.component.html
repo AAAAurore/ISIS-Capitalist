@@ -1,11 +1,11 @@
 <div class="popUp">
-    <h1 mat-dialog-title>Cash Upgrades</h1>
+    <h1 mat-dialog-title>{{ titre }}</h1>
     <mat-dialog-content>
-        Il faut dépenser de l'argent pour gagner de l'argent ! Achetez ces mises à niveau de qualité supérieure pour donner un coup de pouce à vos entreprises.
+        {{ message }}
         <div class="noUpgrade">
             {{ msgNoUpgrade }}
         </div>
-        <div *ngFor="let upgrade of world.upgrades">
+        <div *ngFor="let upgrade of upgrades">
             <mat-card class="upgrade" *ngIf="!upgrade.unlocked">
                 <div *ngIf="server">
                     <img [attr.src]="server + upgrade.logo" class="round"/>
@@ -16,13 +16,13 @@
                             {{ upgrade.name }}
                         </div>
                         <div>
-                            {{ world.products[upgrade.idcible - 1].name }}
+                            {{ upgrade.idcible != 0 ? world.products[upgrade.idcible - 1].name : 'Tous les produits' }}
                         </div>
                         <br />
                         <mat-divider></mat-divider>
                         <br />
                         <div>
-                            {{ upgrade.seuil | number}}
+                            {{ upgrade.seuil | number }} {{ type == 'ANGE' ? upgrade.seuil <= 1 ? 'ange' : 'anges' : '€' }}
                         </div>
                         <br />
                         <div>
@@ -32,7 +32,7 @@
                 </div>
                 <mat-card-actions align="start">
                     <button mat-fab extended (click)="buyUpgrade(upgrade)"
-                        [disabled]="world.money < upgrade.seuil">
+                        [disabled]="type == 'ANGE' ? world.activeangels < upgrade.seuil : world.activeangels < upgrade.seuil">
                         <mat-icon>add_shopping_cart</mat-icon>
                         Acheter
                     </button>

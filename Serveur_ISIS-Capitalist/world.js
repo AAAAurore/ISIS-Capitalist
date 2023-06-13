@@ -1011,7 +1011,7 @@ module.exports = {
         {
             "name": "Tardis",
             "logo": "icones/tardis.png",
-            "seuil": 1e3,
+            "seuil": 10000,
             "idcible": 1,
             "ratio": 3,
             "typeratio": "VITESSE",
@@ -1020,7 +1020,7 @@ module.exports = {
         {
             "name": "Sonic Screwdriver",
             "logo": "icones/sonic.png",
-            "seuil": 1e3,
+            "seuil": 100000,
             "idcible": 1,
             "ratio": 3,
             "typeratio": "GAIN",
@@ -1029,73 +1029,37 @@ module.exports = {
         {
             "name": "Bowtie",
             "logo": "icones/bowtie.png",
-            "seuil": 1e3,
+            "seuil": 1000000,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "VITESSE",
+            "typeratio": "ANGE",
             "unlocked": false
         },
         {
             "name": "Glasses",
             "logo": "icones/glasses.png",
-            "seuil": 1e3,
+            "seuil": 1000000,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
             "name": "Converse",
             "logo": "icones/converse.png",
-            "seuil": 1e3,
+            "seuil": 10000000,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "VITESSE",
+            "typeratio": "GAIN",
             "unlocked": false
         },
         {
             "name": "Niveau 6",
             "logo": "icones/upgrade.png",
-            "seuil": 1e3,
+            "seuil": 100000000,
             "idcible": 1,
             "ratio": 3,
-            "typeratio": "GAIN",
-            "unlocked": false
-        },
-        {
-            "name": "Niveau 5",
-            "logo": "icones/upgrade.png",
-            "seuil": 1e3,
-            "idcible": 1,
-            "ratio": 3,
-            "typeratio": "VITESSE",
-            "unlocked": false
-        },
-        {
-            "name": "Niveau 8",
-            "logo": "icones/upgrade.png",
-            "seuil": 1e3,
-            "idcible": 1,
-            "ratio": 3,
-            "typeratio": "GAIN",
-            "unlocked": false
-        },
-        {
-            "name": "Niveau 9",
-            "logo": "icones/upgrade.png",
-            "seuil": 1e3,
-            "idcible": 1,
-            "ratio": 3,
-            "typeratio": "VITESSE",
-            "unlocked": false
-        },
-        {
-            "name": "Niveau 10",
-            "logo": "icones/upgrade.png",
-            "seuil": 1e3,
-            "idcible": 1,
-            "ratio": 3,
-            "typeratio": "GAIN",
+            "typeratio": "ANGE",
             "unlocked": false
         }
     ],
@@ -1103,16 +1067,16 @@ module.exports = {
         {
             "name": "Dalek",
             "logo": "icones/dalek.png",
-            "seuil": 10,
+            "seuil": 100000000,
             "idcible": 0,
             "ratio": 3,
-            "typeratio": "GAIN",
+            "typeratio": "VITESSE",
             "unlocked": false
         },
         {
             "name": "Cyberman",
             "logo": "icones/cyberman.png",
-            "seuil": 10,
+            "seuil": 1000000000,
             "idcible": 0,
             "ratio": 2,
             "typeratio": "GAIN",
@@ -1121,10 +1085,10 @@ module.exports = {
         {
             "name": "Weeping Angel",
             "logo": "icones/weepingAngel.png",
-            "seuil": 10,
+            "seuil": 10000000000,
             "idcible": 0,
             "ratio": 1,
-            "typeratio": "GAIN",
+            "typeratio": "ANGE",
             "unlocked": false
         }
     ],

@@ -4,10 +4,10 @@
       <div>
         <img [attr.src]="server + world.logo" class="round"/>
       </div>
-      <div>
+      <!--<div>
         <div class="logoName">{{ world.name }}</div>
-      </div>
-      </div>
+      </div>-->
+    </div>
     <div class="money">
       <span [innerHTML]="world.money | bigvalue"></span>
     </div>
@@ -20,7 +20,7 @@
     <div>
       <mat-form-field>
         <mat-label>ID du joueur</mat-label>
-        <input matInput [(ngModel)]="username" (change)="onUsernameChanged()" placeholder="Saisissez votre ID">
+        <input matInput [(ngModel)]="username" (ngModelChange)="onUsernameChanged()" placeholder="Saisissez votre ID">
       </mat-form-field>
     </div>
   </div>
@@ -30,11 +30,11 @@
         <input type="image" [attr.src]="server + 'icones/carteUnlocks.png'" (click)="popUpUnlocks()">
       </div>
       <div>
-        <input type="image" [attr.src]="server + 'icones/carteCashUpgrades.png'" (click)="popUpCashUpgrades()"/>
-        <div [matBadge]="badgeCashUpgrades | number" [matBadgeHidden]="badgeCashUpgrades == 0" matBadgeSize="large"></div>
+        <input type="image" [attr.src]="server + 'icones/carteCashUpgrades.png'" (click)="popUpUpgrades('NOTANGE')"/>
+        <div [matBadge]="badgeUpgrades | number" [matBadgeHidden]="badgeUpgrades == 0" matBadgeSize="large"></div>
       </div>
       <div>
-        <input type="image" [attr.src]="server + 'icones/carteAngelUpgrades.png'" (click)="popUpAngelUpgrades()"/>
+        <input type="image" [attr.src]="server + 'icones/carteAngelUpgrades.png'" (click)="popUpUpgrades('ANGE')"/>
         <div [matBadge]="badgeAngelUpgrades | number" [matBadgeHidden]="badgeAngelUpgrades == 0" matBadgeSize="large"></div>
       </div>
       <div>
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="product">
-        <app-product *ngFor="let product of world.products" [product]="product" [world]="world" [qtmulti]="qtmulti"
+        <app-product *ngFor="let product of world.products" [product]="product" [world]="world" [money]="world.money" [qtmulti]="qtmulti"
           (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)" class="product col-md-6"></app-product>
     </div>
   </div>

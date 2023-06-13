@@ -17,7 +17,11 @@
 .carte {
     height: 147px;
     width: 518px;
-    --mdc-elevated-card-container-color: none;
+    --mdc-elevated-card-container-color: none; 
+}
+
+.carte:hover {
+    background-color:rgb(110, 50, 48, 0.5);
 }
 
 ::ng-deep .carteProduct {

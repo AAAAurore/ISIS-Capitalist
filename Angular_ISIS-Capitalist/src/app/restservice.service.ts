@@ -1,12 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { createClient } from '@urql/core';
-import GET_WORLD from './GrapqhRequests';
-import ACHETER_QT_PRODUIT from './GrapqhRequests';
-import LANCER_PRODUCTION from './GrapqhRequests';
-import ENGAGER_MANAGER from './GrapqhRequests';
-import ACHETER_CASHUPGRADE from './GrapqhRequests';
 import { Palier, Product } from './world';
+import { ACHETER_ANGELUPGRADE, ACHETER_CASHUPGRADE, ACHETER_QT_PRODUIT, ENGAGER_MANAGER, GET_WORLD, LANCER_PRODUCTION } from './GrapqhRequests';
 
 @Injectable({
   providedIn: 'root'
@@ -35,18 +31,22 @@ export class RestserviceService {
   }
 
   acheterQtProduit(product: Product) {
-    return this.createClient().query(ACHETER_QT_PRODUIT, { id: product.id, quantite: product.quantite}).toPromise();
+    return this.createClient().mutation(ACHETER_QT_PRODUIT, { id: product.id, quantite: product.quantite}).toPromise();
   }
 
   lancerProduction(product: Product) {
-    return this.createClient().query(LANCER_PRODUCTION, { id: product.id}).toPromise();
+    return this.createClient().mutation(LANCER_PRODUCTION, { id: product.id}).toPromise();
   }
 
   engagerManager(manager: Palier) {
-    return this.createClient().query(ENGAGER_MANAGER, { name: manager.name}).toPromise();
+    return this.createClient().mutation(ENGAGER_MANAGER, { name: manager.name}).toPromise();
   }
 
   acheterCashUpgrade(upgrade: Palier) {
-    return this.createClient().query(ACHETER_CASHUPGRADE, { name: upgrade.name}).toPromise();
+    return this.createClient().mutation(ACHETER_CASHUPGRADE, { name: upgrade.name}).toPromise();
+  }
+
+  acheterAngelUpgrade(upgrade: Palier) {
+    return this.createClient().mutation(ACHETER_ANGELUPGRADE, { name: upgrade.name}).toPromise();
   }
 }

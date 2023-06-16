@@ -30,19 +30,19 @@ export class PopUpManagersComponent {
 
   // Méthodes
   // Embaucher un manager
-  hireManager(manager: Palier){
-    if(this.world.money >= manager.seuil){
+  hireManager(manager: Palier) {
+    this.restService.engagerManager(manager).catch(reason =>
+      console.log("Erreur: " + reason)
+    );
+
+    if(this.world.money >= manager.seuil) {
       this.world.money-= manager.seuil;
       manager.unlocked = true;
       this.world.products[manager.idcible - 1].managerUnlocked = true;
       this.update.emit(manager);
     }
-    if(this.world.managers.filter(m => !m.unlocked).length == 0){
+    if(this.world.managers.filter(m => !m.unlocked).length == 0) {
       this.msgNoManager = "Oh non, il n'y plus de managers à embaucher !";
     }
-    
-    this.restService.engagerManager(manager).catch(reason =>
-      console.log("Erreur: " + reason)
-    );
   }
 }

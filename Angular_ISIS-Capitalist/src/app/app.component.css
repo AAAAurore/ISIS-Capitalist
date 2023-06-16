@@ -8,19 +8,19 @@
     text-align: center;
 }
 
-.logoName{
+/*.logoName{
     backdrop-filter: blur(15px);
     background-color: rgba(182, 182, 182, 0.7);
     border-radius: 20px;
     display: inline;
-    font-family: 'Rajdhani', 'sans-serif';
+    font-family: 'Julius Sans One', 'sans-serif';
     font-size: medium;
     font-weight: 700;
     padding: 5px;
     padding-left: 15px;
     padding-right: 15px;
     -webkit-backdrop-filter: blur(15px);
-}
+}*/
 
 .money span{
     backdrop-filter: blur(15px);
@@ -28,7 +28,7 @@
     border: 2px solid #003B6F;
     border-radius: 30px;
     display: inline;
-    font-family: 'Rajdhani', 'sans-serif';
+    font-family: 'Julius Sans One', 'sans-serif';
     font-size: x-large;
     font-weight: 700;
     padding: 15px;
@@ -41,20 +41,12 @@
 }
 
 .buttons {
-    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .buttons div {
-    display: inline-flex;
     display: block;
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.buttons input {
-    height: 100px;
 }
 
 .mat-badge{
@@ -73,6 +65,60 @@ mat-card{
     display: inline-block;
 }
 
+.carte {
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+.carte:hover {
+    transform: rotate(-15deg) scale(1.2);
+}
+
+.imageCarte {
+    height: 115px;
+}
+
+.imageCarte2 {
+    height: 125px;
+}
+
+.nomCarte {
+    background-clip: text;
+    background-image: linear-gradient(60deg, #000000, #6e3230);
+    color: transparent;
+    cursor: pointer;
+    font-family: 'Gugi', 'sans-serif';
+    font-size: large;
+    font-weight: 700;
+    position: absolute;
+    text-align: center;
+}
+
+.unlocks {
+    bottom: 48px;
+    left: 12px;
+}
+
+.cashUpgrades {
+    bottom: 36px;
+    left: 8px;
+}
+
+.angelUpgrades {
+    bottom: 35px;
+    left: 8px;
+}
+
+.managers {
+    bottom: 54px;
+    left: 8px;
+}
+
+.investors {
+    bottom: 54px;
+    left: 9px;
+}
+
 .error {
     height: 266.567px;
     left: 50%;
@@ -85,7 +131,6 @@ mat-card{
 }
 
 .errorLogo {
-    
     height: 200px;
     width: 200px;
 }

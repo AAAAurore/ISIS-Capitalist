@@ -1,12 +1,4 @@
-<div class="label" *ngIf="!_product.unlocked && _product != _world.products[0]">
-    <input type="image" [attr.src]="server + 'icones/' + labelLien + '.png'" id="labelImage" [disabled]="LabelDisabled" (click)="_product.unlocked = true"/>
-    <label class="labelName" for="labelImage">
-        {{ _product.name }}
-        <mat-divider></mat-divider>
-        {{ _product.revenu | currency: 'EUR': 'symbol' }}
-    </label>
-</div>
-<mat-card class="carte" id="carte" *ngIf="_product.unlocked || _product == _world.products[0]">
+<mat-card class="carte" id="carte" *ngIf="_product">
     <mat-card-content class="carteProduct">
         <div class="product">
             <div class="lesDeux">

@@ -41,31 +41,31 @@ export class PopUpUpgradesComponent {
     private restService: RestserviceService) {};
 
     buyUpgrade(upgrade: Palier) {
-      if(this.type == 'ANGE'){
-        if(this.world.activeangels >= upgrade.seuil){
-          this.world.activeangels -= upgrade.seuil;
-          this.update.emit(upgrade);
-        }
-        if(this.world.upgrades.filter(u => !u.unlocked).length == 0){
-          this.msgNoUpgrade = "Oh non, il n'y plus d'upgrades à acheter !";
-        }
-  
+      if(this.type == 'ANGE') {
         this.restService.acheterAngelUpgrade(upgrade).catch(reason =>
           console.log("Erreur: " + reason)
         );
-      }
-      else{
-        if(this.world.money >= upgrade.seuil){
-          this.world.money -= upgrade.seuil;
+
+        if(this.world.activeangels >= upgrade.seuil) {
+          this.world.activeangels -= upgrade.seuil;
           this.update.emit(upgrade);
         }
-        if(this.world.upgrades.filter(u => !u.unlocked).length == 0){
+        if(this.world.upgrades.filter(u => !u.unlocked).length == 0) {
           this.msgNoUpgrade = "Oh non, il n'y plus d'upgrades à acheter !";
         }
-  
+      }
+      else{
         this.restService.acheterCashUpgrade(upgrade).catch(reason =>
           console.log("Erreur: " + reason)
         );
+        
+        if(this.world.money >= upgrade.seuil) {
+          this.world.money -= upgrade.seuil;
+          this.update.emit(upgrade);
+        }
+        if(this.world.upgrades.filter(u => !u.unlocked).length == 0) {
+          this.msgNoUpgrade = "Oh non, il n'y plus d'upgrades à acheter !";
+        }
       }
     }
 }

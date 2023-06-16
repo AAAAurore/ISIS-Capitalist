@@ -1,21 +1,6 @@
-.label {
-    height: 147px;
-    position: relative;
-    text-align: center;
-    width: 518px;
-}
-
-.labelName {
-    bottom: 45px;
-    font-family: 'Rajdhani', 'sans-serif';
-    font-size: x-large;
-    font-weight: 700;
-    left: 190px;
-    position: absolute;
-}
-
 .carte {
     height: 147px;
+    transition: background-color 0.3s ease-in-out;
     width: 518px;
     --mdc-elevated-card-container-color: none; 
 }
@@ -43,6 +28,7 @@
 .lePremier button {
     background: none;
     border: none;
+    cursor: pointer;
     padding: 0;
 }
 

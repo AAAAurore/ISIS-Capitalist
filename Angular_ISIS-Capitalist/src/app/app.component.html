@@ -26,23 +26,28 @@
   </div>
   <div class="main">
     <div class="buttons">
-      <div>
-        <input type="image" [attr.src]="server + 'icones/carteUnlocks.png'" (click)="popUpUnlocks()">
+      <div class="carte">
+        <input type="image" class="imageCarte" [attr.src]="server + 'icones/carte.png'" (click)="popUpUnlocks()"/>
+        <div class="nomCarte unlocks" (click)="popUpUnlocks()">UNLOCKS</div>
       </div>
-      <div>
-        <input type="image" [attr.src]="server + 'icones/carteCashUpgrades.png'" (click)="popUpUpgrades('NOTANGE')"/>
+      <div class="carte">
+        <input type="image" class="imageCarte" [attr.src]="server + 'icones/carte.png'" (click)="popUpUpgrades('NOTANGE')"/>
+        <div class="nomCarte cashUpgrades" (click)="popUpUpgrades('NOTANGE')">CASH<br />UPGRADES</div>
         <div [matBadge]="badgeUpgrades | number" [matBadgeHidden]="badgeUpgrades == 0" matBadgeSize="large"></div>
       </div>
-      <div>
-        <input type="image" [attr.src]="server + 'icones/carteAngelUpgrades.png'" (click)="popUpUpgrades('ANGE')"/>
+      <div class="carte">
+        <input type="image" class="imageCarte" [attr.src]="server + 'icones/carte.png'" (click)="popUpUpgrades('ANGE')"/>
+        <div class="nomCarte angelUpgrades" (click)="popUpUpgrades('ANGE')">ANGELS<br />UPGRADES</div>
         <div [matBadge]="badgeAngelUpgrades | number" [matBadgeHidden]="badgeAngelUpgrades == 0" matBadgeSize="large"></div>
       </div>
-      <div>
-        <input type="image" [attr.src]="server + 'icones/carteManagers.png'" (click)="popUpManagers()"/>
+      <div class="carte">
+        <input type="image" class="imageCarte2" [attr.src]="server + 'icones/carte.png'" (click)="popUpManagers()"/>
+        <div class="nomCarte managers" (click)="popUpManagers()">MANAGERS</div>
         <div [matBadge]="badgeManagers | number" [matBadgeHidden]="badgeManagers == 0" matBadgeSize="large"></div>
       </div>
-      <div>
-        <input type="image" [attr.src]="server + 'icones/carteInvestigors.png'" (click)="popUpInvestigors()"/>
+      <div class="carte">
+        <input type="image" class="imageCarte2" [attr.src]="server + 'icones/carte.png'" (click)="popUpInvestors()"/>
+        <div class="nomCarte investors" (click)="popUpInvestors()">INVESTORS</div>
       </div>
     </div>
     <div class="product">

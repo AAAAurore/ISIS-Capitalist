@@ -28,7 +28,6 @@ module.exports = gql`
         quantite: Int
         timeleft: Int
         lastupdate: String
-        unlocked: Boolean
         managerUnlocked: Boolean
         paliers: [Palier]
     }

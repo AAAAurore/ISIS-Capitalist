@@ -22,7 +22,6 @@ export const GET_WORLD = gql`
         quantite
         timeleft
         lastupdate
-        unlocked
         managerUnlocked
         paliers {
           name
@@ -111,6 +110,79 @@ export const ACHETER_ANGELUPGRADE = gql`
   mutation acheterAngelUpgrade($name: String!) {
     acheterAngelUpgrade(name: $name) {
       name
+    }
+  }
+`;
+
+export const RESET_WORLD = gql`
+  mutation resetWorld {
+    resetWorld {
+      name
+      logo
+      money
+      score
+      totalangels
+      activeangels
+      angelbonus
+      lastupdate
+      products {
+        id
+        name
+        logo
+        cout
+        croissance
+        revenu
+        vitesse
+        quantite
+        timeleft
+        lastupdate
+        managerUnlocked
+        paliers {
+          name
+          logo
+          seuil
+          idcible
+          ratio
+          typeratio
+          unlocked
+        }
+      }
+      allunlocks {
+        name
+        logo
+        seuil
+        idcible
+        ratio
+        typeratio
+        unlocked
+      }
+      upgrades {
+        name
+        logo
+        seuil
+        idcible
+        ratio
+        typeratio
+        unlocked
+      }
+      angelupgrades {
+        name
+        logo
+        seuil
+        idcible
+        ratio
+        typeratio
+        unlocked
+      }
+      managers {
+        name
+        logo
+        seuil
+        idcible
+        ratio
+        typeratio
+        unlocked
+      }
     }
   }
 `;

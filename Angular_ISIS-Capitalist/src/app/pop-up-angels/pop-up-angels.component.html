@@ -1,0 +1,51 @@
+<div class="popUp">
+    <h1 mat-dialog-title>Les anges investisseurs</h1>
+    <mat-dialog-content>
+        Ça alors ! Regardez ces bénéfices !
+        <br />
+        Plus vous gagnez de l'argent, plus vous pouvez attirer d'anges investisseurs ! Ces types augmentent les bénéfices et débloquent de nouvelles améliorations, mais vous devrez vendre vos entreprises et recommencer pour les intégrer.
+        <br />
+        (Psst, ça vaut le coup !)
+        <br /><br />
+        <div class="cartes">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Nombre d'anges actuellement actifs</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    {{ world.activeangels }}
+                </mat-card-content>
+            </mat-card>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{ world.angelbonus | number }} %</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    Bonus par ange
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <br /><br /><br />
+        <div class="reset">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Nombre d'anges supplémentaires accumulés par la partie en cours</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    {{ angelSupplements }}
+                </mat-card-content>
+            </mat-card>
+            <div><br /><br /></div>
+            <div mat-card-actions>
+                <button mat-fab extended (click)="reset()">
+                    <mat-icon>autorenew</mat-icon>
+                    Redémarrer le monde
+                </button>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Fermer</button>
+    </mat-dialog-actions>
+</div>

@@ -28,7 +28,7 @@ function savePurchase(args, context) {
     allUnlocks.forEach(a => {
         let quantiteMin = 0;
         world.products.forEach((p, index) => {
-            if(index == 0 || p.quantite < quantiteMin){
+            if(index == 0 || p.quantite < quantiteMin) {
                 quantiteMin = p.quantite;
             }
         })
@@ -86,7 +86,6 @@ function saveProduction(args, context) {
     let product = world.products.find(p => p.id == id);
     
     if(product) {
-        product.unlocked = true;
         product.timeleft = product.vitesse;
         product.lastupdate = Date.now().toString();
     }
@@ -145,14 +144,14 @@ function saveUpgrade(args, context) {
                 }
                 else{
                     world.activeangels -= upgrade.seuil;
-                  world.angelbonus += upgrade.ratio;
+                    world.angelbonus += upgrade.ratio;
                 }
             })
         }
         else {
             let product = world.products.find(p => p == upgrade.idcible);
 
-            if(product){
+            if(product) {
                 if (upgrade.typeratio == "VITESSE") {
                     product.vitesse = product.vitesse / upgrade.ratio;
                 }
@@ -185,7 +184,7 @@ function saveScore(context) {
         products.forEach(product => {
             let elapseTime = 0;
             let nbProduction = 0;
-            let auto = product.unlocked && product.managerUnlocked;
+            let auto = product.managerUnlocked;
     
             if (product.timeleft != 0 || auto) {
                 elapseTime = Date.now() - Number(product.lastupdate);
@@ -214,8 +213,10 @@ function saveScore(context) {
                 }
     
                 for(var i = 0; i < nbProduction; i++) {
-                    world.money += product.revenu * product.quantite;
-                    world.score += product.revenu * product.quantite;
+                    world.money += product.revenu * product.quantite
+                    * (1 + world.activeangels * world.angelbonus / 100);
+                    world.score += product.revenu * product.quantite
+                    * (1 + world.activeangels * world.angelbonus / 100);
                 }
             }
         });
@@ -225,6 +226,18 @@ function saveScore(context) {
             `Il n'y a aucun produit.`
         )
     }
+}
+
+function readWorld(context) {
+    let world = context.world;
+    let activeangels = 150 * Math.sqrt(this.world.score / Math.pow(10, 15));
+    let totalangels = world.activeangels;
+
+    let newWorld = require("./world");
+
+    newWorld.activeangels = activeangels;
+    newWorld.totalangels = totalangels;
+    context.world = newWorld;
 }
 
 module.exports = {
@@ -263,6 +276,11 @@ module.exports = {
         acheterAngelUpgrade(parent, args, context) {
             saveScore(context);
             saveUpgrade(args, context);
+            saveWorld(context);
+            return context.world;
+        },
+        resetWorld(context) {
+            readWorld(context);
             saveWorld(context);
             return context.world;
         }

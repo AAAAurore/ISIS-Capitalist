@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
 
 html, body {
     background-image: url('http://localhost:4000/icones/gallifreyan.jpg');
@@ -23,45 +24,45 @@ body {
     width: 115px;
 }
 
-button[mat-fab][extended]{
+button[mat-fab][extended] {
     background-color: #2B9AC3;
     color: black;
     text-align: left;
 }
 
-button[mat-fab][extended]:disabled{
+button[mat-fab][extended]:disabled {
     background-color: gray;
     color: black;
     text-align: left;
 }
 
-.mat-mdc-dialog-container .mdc-dialog__title{
-    font-family: 'Rajdhani', 'sans-serif' !important;
+.mat-mdc-dialog-container .mdc-dialog__title {
+    font-family: 'Julius Sans One', 'sans-serif' !important;
     font-size: x-large !important;
     font-weight: 700 !important;
     margin-bottom: 5px;
     text-align: center;
 }
 
-h1{
-    font-family: 'Rajdhani', 'sans-serif' !important;
+h1 {
+    font-family: 'Julius Sans One', 'sans-serif' !important;
     font-size: x-large !important;
     font-weight: 700 !important;
 }
 
-.mat-mdc-dialog-container .mdc-dialog__content{
+.mat-mdc-dialog-container .mdc-dialog__content {
     color: #000000 !important;
     margin-top: 20px;
 }
 
-.popUp{
+.popUp {
     background: #808080;
 }
 
-.layout{
+.layout {
     text-align: center;
 }
 
-.name{
+.name {
     margin-bottom: 10px;
 }

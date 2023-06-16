@@ -17,10 +17,6 @@ export class ProductComponent {
   // Côté serveur
   server: string;
 
-  // Label pour les produits qui ne sont pas débloqué
-  LabelDisabled : boolean = true;
-  labelLien : string = "labelGray";
-
   // Inputs
   _product: Product;
   @Input()
@@ -31,7 +27,7 @@ export class ProductComponent {
       this._product.lastupdate = Date.now().toString();
       this.progressBarValue = ((this._product.vitesse - this._product.timeleft) / this._product.vitesse) * 100;
       this.run = true;
-      this.auto = this._product.unlocked && this._product.managerUnlocked;
+      this.auto = this._product.managerUnlocked;
     }
   }
 
@@ -75,52 +71,48 @@ export class ProductComponent {
   }
 
   // Méthodes
-  ngOnInit(){
+  ngOnInit() {
     setInterval(() => {
       this.calcScore();
-      this.updateLabel();
     }, 100);
   }
 
   // Calculer le coût total du produit
-  calcTotalCost(){
+  calcTotalCost() {
     return this._product.cout * Math.pow(this._product.croissance, this._product.quantite - 1) * this.calcMaxCanBuy();
   }
 
-  // Calculer la quantité max
-  calcMaxCanBuy(){
+  // Calculer la quantité maximale
+  calcMaxCanBuy() {
     let quantite: number = 0;
     
-    if(Number(this._qtmulti)){
+    if(Number(this._qtmulti)) {
       quantite = Number(this._qtmulti);
     }
     else{
       quantite = Math.floor(Math.log(-((this._money * (1 - this._product.croissance)) / this._product.cout) + 1) / Math.log(this._product.croissance));
+      if(quantite <= 0){
+        quantite = 1;
+      }
     }
     return quantite;
   }
 
   // Lancer la production
-  clickIcon(){
-    if(this._product.timeleft == 0){
-      this._product.timeleft = this._product.vitesse;
-      this.run = true;
-      this._world.lastupdate = Date.now().toString();
-      
+  clickIcon() {
+    if(this._product.timeleft == 0) {
       this.restService.lancerProduction(this._product).catch(reason =>
         console.log("Erreur: " + reason)
       );
+
+      this._product.timeleft = this._product.vitesse;
+      this.run = true;
+      this._world.lastupdate = Date.now().toString();
     }
   }
 
-  // Débloquer le produit
-  updateLabel(){
-    this.labelLien = this._money < this._product.revenu ? "labelGray" : "label";
-    this.LabelDisabled = this._money < this._product.revenu ? true : false;
-  }
-
   // Mettre à jour les Unlocks / Upgrades / Angels Upgrades
-  calcUpgrade(palier: Palier){
+  calcUpgrade(palier: Palier) {
     palier.unlocked = true;
     if (palier.typeratio == "VITESSE") {
       this._product.vitesse = this._product.vitesse / palier.ratio;
@@ -134,11 +126,11 @@ export class ProductComponent {
   }
 
   // Calculer le score
-  calcScore(){
+  calcScore() {
     let elapseTime: number = 0;
     let nbProduction: number = 0;
 
-    this.auto = this._product.unlocked && this._product.managerUnlocked;
+    this.auto = this._product.managerUnlocked;
 
     if (this._product.timeleft != 0 || this.auto) {
       elapseTime = Date.now() - Number(this._product.lastupdate);
@@ -173,12 +165,13 @@ export class ProductComponent {
   }
 
   // Acheter le produit
-  buyProduct(){
-    this._product.quantite += this.calcMaxCanBuy();
-    this.onBuy.emit({product: this._product, coutProduct : this.calcTotalCost()});
+  buyProduct() {
     this.restService.acheterQtProduit(this._product).catch(reason =>
       console.log("Erreur: " + reason)
     );
+    
+    this._product.quantite += this.calcMaxCanBuy();
+    this.onBuy.emit({product: this._product, coutProduct : this.calcTotalCost()});
     this.calcTotalCost();
   }
 }

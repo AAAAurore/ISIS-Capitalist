@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { createClient } from '@urql/core';
 import { Palier, Product } from './world';
-import { ACHETER_ANGELUPGRADE, ACHETER_CASHUPGRADE, ACHETER_QT_PRODUIT, ENGAGER_MANAGER, GET_WORLD, LANCER_PRODUCTION } from './GrapqhRequests';
+import { ACHETER_ANGELUPGRADE, ACHETER_CASHUPGRADE, ACHETER_QT_PRODUIT, ENGAGER_MANAGER, GET_WORLD, LANCER_PRODUCTION, RESET_WORLD } from './GrapqhRequests';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +48,9 @@ export class RestserviceService {
 
   acheterAngelUpgrade(upgrade: Palier) {
     return this.createClient().mutation(ACHETER_ANGELUPGRADE, { name: upgrade.name}).toPromise();
+  }
+
+  resetWorld() {
+    return this.createClient().mutation(RESET_WORLD, {}).toPromise();
   }
 }

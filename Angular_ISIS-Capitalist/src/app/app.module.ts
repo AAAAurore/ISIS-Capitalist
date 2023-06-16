@@ -25,6 +25,7 @@ import { PopUpUnlocksComponent } from './pop-up-unlocks/pop-up-unlocks.component
 import { ProductComponent } from './product/product.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { PopUpUpgradesComponent } from './pop-up-upgrades/pop-up-upgrades.component';
+import { PopUpAngelsComponent } from './pop-up-angels/pop-up-angels.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -37,7 +38,8 @@ registerLocaleData(localeFr, 'fr');
     PopUpUnlocksComponent,
     ProductComponent,
     SnackBarComponent,
-    PopUpUpgradesComponent
+    PopUpUpgradesComponent,
+    PopUpAngelsComponent
   ],
   imports: [
     AppRoutingModule,

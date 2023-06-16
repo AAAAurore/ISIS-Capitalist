@@ -25,12 +25,12 @@ export class PopUpUnlocksComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {};
 
   //Méthodes
-  ngOnInit(){
+  ngOnInit() {
     this.groupByName();
   }
   
   // Filter les Unlocks par produit
-  groupByName(){
+  groupByName() {
     this.unlocks = this.world.allunlocks.filter(u => !u.unlocked).reduce((idCible, seuil) => {
       idCible[seuil.idcible] = idCible[seuil.idcible] || [];
       idCible[seuil.idcible].push(seuil);

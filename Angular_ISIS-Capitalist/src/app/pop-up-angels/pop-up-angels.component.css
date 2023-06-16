@@ -1,0 +1,22 @@
+.popUp {
+    max-width: 1050px;
+}
+
+.cartes {
+    display: flex;
+    justify-content: center;
+}
+
+.reset {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+
+mat-card {
+    align-items: center;
+    background-color: #2b9ac3;
+    height: 60px;
+    justify-content: center;
+    width: 300px;
+}

@@ -33,7 +33,6 @@ export class Product {
     quantite: number = 0;
     timeleft: number = 0;
     lastupdate: string = "";
-    unlocked: boolean = false;
     managerUnlocked: boolean = false;
     paliers : Palier[];
 

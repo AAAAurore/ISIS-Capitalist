@@ -17,11 +17,12 @@
         Acheter<br />{{ qtmulti }}
       </button>
     </div>
-    <div>
-      <mat-form-field>
-        <mat-label>ID du joueur</mat-label>
-        <input matInput [(ngModel)]="username" (ngModelChange)="onUsernameChanged()" placeholder="Saisissez votre ID">
-      </mat-form-field>
+    <div class ="profilUsername">
+        <img class="profile" [attr.src]="server + 'icones/profile.png'"/>
+        <mat-form-field>
+          <mat-label>ID du joueur</mat-label>
+          <input matInput [(ngModel)]="username" (ngModelChange)="onUsernameChanged()" placeholder="Saisissez votre ID">
+        </mat-form-field>
     </div>
   </div>
   <div class="main">

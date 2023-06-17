@@ -35,6 +35,17 @@
     -webkit-backdrop-filter: blur(15px);
 }
 
+.profilUsername {
+    display: inline-flex;
+}
+
+.profile {
+    bottom: 8px;
+    height: 70px;
+    position: relative;
+    right: 15px;
+}
+
 .main {
     display: grid;
     grid-template-columns: 20% 80%;

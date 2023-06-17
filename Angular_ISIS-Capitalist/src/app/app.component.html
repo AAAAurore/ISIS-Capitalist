@@ -27,33 +27,33 @@
   </div>
   <div class="main">
     <div class="buttons">
-      <div class="carte">
-        <input type="image" class="imageCarte" [attr.src]="server + 'icones/carte.png'" (click)="popUpUnlocks()"/>
-        <div class="nomCarte unlocks" (click)="popUpUnlocks()">UNLOCKS</div>
+      <div class="button">
+        <input type="image" class="imageButton" [attr.src]="server + 'icones/carte.png'" (click)="popUpUnlocks()"/>
+        <div class="nameButton unlocks" (click)="popUpUnlocks()">UNLOCKS</div>
       </div>
-      <div class="carte">
-        <input type="image" class="imageCarte" [attr.src]="server + 'icones/carte.png'" (click)="popUpUpgrades('NOTANGE')"/>
-        <div class="nomCarte cashUpgrades" (click)="popUpUpgrades('NOTANGE')">CASH<br />UPGRADES</div>
+      <div class="button">
+        <input type="image" class="imageButton" [attr.src]="server + 'icones/carte.png'" (click)="popUpUpgrades('NOTANGE')"/>
+        <div class="nameButton cashUpgrades" (click)="popUpUpgrades('NOTANGE')">CASH<br />UPGRADES</div>
         <div [matBadge]="badgeUpgrades | number" [matBadgeHidden]="badgeUpgrades == 0" matBadgeSize="large"></div>
       </div>
-      <div class="carte">
-        <input type="image" class="imageCarte" [attr.src]="server + 'icones/carte.png'" (click)="popUpUpgrades('ANGE')"/>
-        <div class="nomCarte angelUpgrades" (click)="popUpUpgrades('ANGE')">ANGELS<br />UPGRADES</div>
+      <div class="button">
+        <input type="image" class="imageButton" [attr.src]="server + 'icones/carte.png'" (click)="popUpUpgrades('ANGE')"/>
+        <div class="nameButton angelUpgrades" (click)="popUpUpgrades('ANGE')">ANGELS<br />UPGRADES</div>
         <div [matBadge]="badgeAngelUpgrades | number" [matBadgeHidden]="badgeAngelUpgrades == 0" matBadgeSize="large"></div>
       </div>
-      <div class="carte">
-        <input type="image" class="imageCarte2" [attr.src]="server + 'icones/carte.png'" (click)="popUpManagers()"/>
-        <div class="nomCarte managers" (click)="popUpManagers()">MANAGERS</div>
+      <div class="button">
+        <input type="image" class="imageButton2" [attr.src]="server + 'icones/carte.png'" (click)="popUpManagers()"/>
+        <div class="nameButton managers" (click)="popUpManagers()">MANAGERS</div>
         <div [matBadge]="badgeManagers | number" [matBadgeHidden]="badgeManagers == 0" matBadgeSize="large"></div>
       </div>
-      <div class="carte">
-        <input type="image" class="imageCarte2" [attr.src]="server + 'icones/carte.png'" (click)="popUpInvestors()"/>
-        <div class="nomCarte investors" (click)="popUpInvestors()">INVESTORS</div>
+      <div class="button">
+        <input type="image" class="imageButton2" [attr.src]="server + 'icones/carte.png'" (click)="popUpInvestors()"/>
+        <div class="nameButton investors" (click)="popUpInvestors()">INVESTORS</div>
       </div>
     </div>
     <div class="product">
-        <app-product *ngFor="let product of world.products" [product]="product" [world]="world" [money]="world.money" [qtmulti]="qtmulti"
-          (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)" class="product col-md-6"></app-product>
+      <app-product *ngFor="let product of world.products" [product]="product" [world]="world" [money]="world.money" [qtmulti]="qtmulti"
+        (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)" class="product"></app-product>
     </div>
   </div>
 </div>

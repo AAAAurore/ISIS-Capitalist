@@ -1,7 +1,7 @@
 .header {
     align-items: center;
     display: grid;
-    grid-template-columns: 25% 25% 30% 20%;
+    grid-template-columns: 25% 25% 25% 25%;
 }
 
 .logo {
@@ -69,31 +69,32 @@
 .product {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: repeat(3, 0.3fr);
+    grid-template-rows: repeat(3, 0.2fr);
+    justify-items: center;
 }
 
 mat-card{
     display: inline-block;
 }
 
-.carte {
+.button {
     position: relative;
     transition: transform 0.3s ease-in-out;
 }
 
-.carte:hover {
+.button:hover {
     transform: rotate(-15deg) scale(1.2);
 }
 
-.imageCarte {
+.imageButton {
     height: 115px;
 }
 
-.imageCarte2 {
+.imageButton2 {
     height: 125px;
 }
 
-.nomCarte {
+.nameButton {
     background-clip: text;
     background-image: linear-gradient(60deg, #000000, #6e3230);
     color: transparent;
@@ -144,4 +145,14 @@ mat-card{
 .errorLogo {
     height: 200px;
     width: 200px;
+}
+
+@media screen and (max-width: 1295px)
+{
+    .product {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(3, 0.1fr);
+        justify-items: center;
+    }
 }

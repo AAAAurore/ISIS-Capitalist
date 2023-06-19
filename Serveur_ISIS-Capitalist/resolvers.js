@@ -4,8 +4,6 @@ function saveWorld(context) {
     let world = context.world;
     let user = context.user;
 
-    world.lastupdate = Date.now().toString();
-
     fs.writeFile("userworlds/" + user + "-world.json",
     JSON.stringify(world),
     err => {
@@ -43,7 +41,7 @@ function savePurchase(args, context) {
                     p.revenu = p.revenu * a.ratio;
                 }
                 else{
-                  world.angelbonus += a.ratio;
+                    world.angelbonus += a.ratio;
                 }
             })
         }
@@ -87,6 +85,7 @@ function saveProduction(args, context) {
     
     if(product) {
         product.timeleft = product.vitesse;
+        world.lastupdate = Date.now().toString();
         product.lastupdate = Date.now().toString();
     }
     else {
@@ -106,8 +105,10 @@ function saveManager(args, context) {
         let product = world.products.find(p => p == manager.idcible);
 
         if(product) {
+            world.money -= manager.cout;
             manager.unlocked = true;
             product.managerUnlocked = true;
+            product.timeleft = product.vitesse;
         }
         else {
             throw new Error(
@@ -121,7 +122,6 @@ function saveManager(args, context) {
         )
     }
 }
-
 
 function saveUpgrade(args, context) {
     let world = context.world;
@@ -189,7 +189,6 @@ function saveScore(context) {
             if (product.timeleft != 0 || auto) {
                 elapseTime = Date.now() - Number(product.lastupdate);
                 product.lastupdate = Date.now().toString();
-                world.lastupdate = Date.now().toString();
     
                 if (!product.managerUnlocked) {
                     if (elapseTime > product.timeleft) {          
@@ -197,8 +196,8 @@ function saveScore(context) {
                         product.timeleft = 0;
                     }
                     else {
-                    nbProduction = 0;
-                    product.timeleft -= elapseTime;
+                        nbProduction = 0;
+                        product.timeleft -= elapseTime;
                     }
                 }
                 else {
@@ -230,10 +229,12 @@ function saveScore(context) {
 
 function readWorld(context) {
     let world = context.world;
-    let activeangels = 150 * Math.sqrt(this.world.score / Math.pow(10, 15));
+    let activeangels = 150 * Math.sqrt(world.score / Math.pow(10, 15));
     let totalangels = world.activeangels;
+    console.log(world);
 
     let newWorld = require("./world");
+console.log(newWorld);
 
     newWorld.activeangels = activeangels;
     newWorld.totalangels = totalangels;
@@ -253,33 +254,34 @@ module.exports = {
             saveScore(context);
             savePurchase(args, context);
             saveWorld(context);
-            return context.world;
+            return context.world.products.find(p => p.id == args.id);
         },
         lancerProductionProduit(parent, args, context) {
             saveScore(context);
             saveProduction(args, context);
             saveWorld(context);
-            return context.world;
+            return context.world.products.find(p => p.id == args.id);
         },
         engagerManager(parent, args, context) {
             saveScore(context);
             saveManager(args, context);
             saveWorld(context);
-            return context.world;
+            return context.world.managers.find(m => m.id == args.id);
         },
         acheterCashUpgrade(parent, args, context) {
             saveScore(context);
             saveUpgrade(args, context);
             saveWorld(context);
-            return context.world;
+            return context.world.managers.find(m => m.id == args.id);
         },
         acheterAngelUpgrade(parent, args, context) {
             saveScore(context);
             saveUpgrade(args, context);
             saveWorld(context);
-            return context.world;
+            return context.world.managers.find(m => m.id == args.id);
         },
-        resetWorld(context) {
+        resetWorld(parent, args, context) {
+            saveScore(context);
             readWorld(context);
             saveWorld(context);
             return context.world;

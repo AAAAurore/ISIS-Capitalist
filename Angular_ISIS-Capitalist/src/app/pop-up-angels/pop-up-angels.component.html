@@ -33,12 +33,12 @@
                     <mat-card-title>Nombre d'anges supplémentaires accumulés par la partie en cours</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    {{ angelSupplements }}
+                    {{ angelSupplements | number }}
                 </mat-card-content>
             </mat-card>
             <div><br /><br /></div>
             <div mat-card-actions>
-                <button mat-fab extended (click)="reset()">
+                <button mat-fab extended (click)="dialog.open(confirmation);">
                     <mat-icon>autorenew</mat-icon>
                     Redémarrer le monde
                 </button>
@@ -49,3 +49,15 @@
         <button mat-button mat-dialog-close>Fermer</button>
     </mat-dialog-actions>
 </div>
+<ng-template #confirmation>
+    <div class="popUp">
+        <h2 mat-dialog-title>{{ confirmationTitle }}</h2>
+        <mat-dialog-content>
+            {{ confirmationMessage }}
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button id="oui" (click)="reset()">Oui</button>
+            <button mat-button id="non" mat-dialog-close>Non</button>
+        </mat-dialog-actions>
+    </div>
+  </ng-template>

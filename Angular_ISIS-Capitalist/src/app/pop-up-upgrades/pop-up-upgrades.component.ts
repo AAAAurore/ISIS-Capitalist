@@ -43,7 +43,7 @@ export class PopUpUpgradesComponent {
     buyUpgrade(upgrade: Palier) {
       if(this.type == 'ANGE') {
         this.restService.acheterAngelUpgrade(upgrade).catch(reason =>
-          console.log("Erreur: " + reason)
+          console.log("Erreur : " + reason)
         );
 
         if(this.world.activeangels >= upgrade.seuil) {
@@ -56,7 +56,7 @@ export class PopUpUpgradesComponent {
       }
       else{
         this.restService.acheterCashUpgrade(upgrade).catch(reason =>
-          console.log("Erreur: " + reason)
+          console.log("Erreur : " + reason)
         );
         
         if(this.world.money >= upgrade.seuil) {

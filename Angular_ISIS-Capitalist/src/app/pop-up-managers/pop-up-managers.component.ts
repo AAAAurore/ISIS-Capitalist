@@ -32,7 +32,7 @@ export class PopUpManagersComponent {
   // Embaucher un manager
   hireManager(manager: Palier) {
     this.restService.engagerManager(manager).catch(reason =>
-      console.log("Erreur: " + reason)
+      console.log("Erreur : " + reason)
     );
 
     if(this.world.money >= manager.seuil) {

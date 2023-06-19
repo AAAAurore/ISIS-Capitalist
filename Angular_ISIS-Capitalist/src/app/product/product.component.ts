@@ -101,8 +101,8 @@ export class ProductComponent {
   // Lancer la production
   clickIcon() {
     if(this._product.timeleft == 0) {
-      this.restService.lancerProduction(this._product).catch(reason =>
-        console.log("Erreur: " + reason)
+      this.restService.lancerProductionProduit(this._product).catch(reason =>
+        console.log("Erreur : " + reason)
       );
 
       this._product.timeleft = this._product.vitesse;
@@ -167,7 +167,7 @@ export class ProductComponent {
   // Acheter le produit
   buyProduct() {
     this.restService.acheterQtProduit(this._product).catch(reason =>
-      console.log("Erreur: " + reason)
+      console.log("Erreur : " + reason)
     );
     
     this._product.quantite += this.calcMaxCanBuy();

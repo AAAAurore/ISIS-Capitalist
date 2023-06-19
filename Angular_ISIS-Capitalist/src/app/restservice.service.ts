@@ -34,7 +34,7 @@ export class RestserviceService {
     return this.createClient().mutation(ACHETER_QT_PRODUIT, { id: product.id, quantite: product.quantite}).toPromise();
   }
 
-  lancerProduction(product: Product) {
+  lancerProductionProduit(product: Product) {
     return this.createClient().mutation(LANCER_PRODUCTION, { id: product.id}).toPromise();
   }
 

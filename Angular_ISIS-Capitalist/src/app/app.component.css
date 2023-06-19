@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-/*.logoName{
+/*.logoName {
     backdrop-filter: blur(15px);
     background-color: rgba(182, 182, 182, 0.7);
     border-radius: 20px;
@@ -22,7 +22,7 @@
     -webkit-backdrop-filter: blur(15px);
 }*/
 
-.money span{
+.money span {
     backdrop-filter: blur(15px);
     background-color: rgba(182, 182, 182, 0.7);
     border: 2px solid #003B6F;
@@ -48,7 +48,7 @@
 
 .main {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 15% 85%;
 }
 
 .buttons {
@@ -60,7 +60,7 @@
     display: block;
 }
 
-.mat-badge{
+.mat-badge {
     background: #003B6F;
     bottom: 110px;
     color: #FFFFFF;
@@ -73,7 +73,7 @@
     justify-items: center;
 }
 
-mat-card{
+mat-card {
     display: inline-block;
 }
 

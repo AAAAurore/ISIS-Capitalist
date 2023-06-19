@@ -2,7 +2,7 @@
   <div class="header">
     <div class="logo">
       <div>
-        <img [attr.src]="server + world.logo" class="round"/>
+        <img [attr.src]="server + world.logo" class="round" (click)="about()"/>
       </div>
       <!--<div>
         <div class="logoName">{{ world.name }}</div>

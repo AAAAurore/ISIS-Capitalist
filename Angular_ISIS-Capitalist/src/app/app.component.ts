@@ -9,6 +9,7 @@ import { PopUpUnlocksComponent } from './pop-up-unlocks/pop-up-unlocks.component
 import { ProductComponent } from './product/product.component';
 import { PopUpUpgradesComponent } from './pop-up-upgrades/pop-up-upgrades.component';
 import { PopUpAngelsComponent } from './pop-up-angels/pop-up-angels.component';
+import { PopUpAboutComponent } from './pop-up-about/pop-up-about.component';
 
 @Component({
   selector: 'app-root',
@@ -59,6 +60,11 @@ export class AppComponent {
       this.world = world.data.getWorld;
       this.server = this.restService.server;
     });
+  }
+
+  // À propos du jeu
+  about() {
+    this.dialog.open(PopUpAboutComponent);
   }
 
   // Afficher le message d'erreur si le chargement du serveur n'a pas fonctionné

@@ -1092,7 +1092,7 @@ module.exports = {
             "logo": "icones/ms.jpg",
             "seuil": 1000,
             "idcible": 1,
-            "ratio": 0,
+            "ratio": 2,
             "typeratio": "VITESSE",
             "unlocked": false
         },
@@ -1101,7 +1101,7 @@ module.exports = {
             "logo": "icones/dt.jpg",
             "seuil": 1500,
             "idcible": 2,
-            "ratio": 0,
+            "ratio": 2,
             "typeratio": "VITESSE",
             "unlocked": false
         },
@@ -1110,7 +1110,7 @@ module.exports = {
             "logo": "icones/kg.jpg",
             "seuil": 2000,
             "idcible": 3,
-            "ratio": 0,
+            "ratio": 2,
             "typeratio": "VITESSE",
             "unlocked": false
         },
@@ -1119,7 +1119,7 @@ module.exports = {
             "logo": "icones/ad.jpg",
             "seuil": 4000,
             "idcible": 4,
-            "ratio": 0,
+            "ratio": 2,
             "typeratio": "VITESSE",
             "unlocked": false
         },
@@ -1128,7 +1128,7 @@ module.exports = {
             "logo": "icones/ak.jpg",
             "seuil": 7000,
             "idcible": 5,
-            "ratio": 0,
+            "ratio": 2,
             "typeratio": "VITESSE",
             "unlocked": false
         },
@@ -1137,7 +1137,7 @@ module.exports = {
             "logo": "icones/jw.jpg",
             "seuil": 11000,
             "idcible": 6,
-            "ratio": 0,
+            "ratio": 2,
             "typeratio": "VITESSE",
             "unlocked": false
         }

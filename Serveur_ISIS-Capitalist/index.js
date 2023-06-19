@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs/promises');
 const { ApolloServer } = require('apollo-server-express');
 
 // Construct a schema, using GraphQL schema language

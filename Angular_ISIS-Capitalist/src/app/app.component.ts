@@ -45,12 +45,7 @@ export class AppComponent {
     private restService: RestserviceService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
-    ) {
-    restService.getWorld().then( world => {
-      this.world = world.data.getWorld;
-      this.server = restService.server;
-    });
-  }
+    ) { }
 
   // Méthodes
   ngOnInit() {
@@ -59,6 +54,11 @@ export class AppComponent {
     this.qtmulti = this.quantites[0];
 
     this.updateUsername();
+        
+    this.restService.getWorld().then( world => {
+      this.world = world.data.getWorld;
+      this.server = this.restService.server;
+    });
   }
 
   // Afficher le message d'erreur si le chargement du serveur n'a pas fonctionné
@@ -122,6 +122,7 @@ export class AppComponent {
   onUsernameChanged() {
    localStorage.setItem("username", this.username);
    this.restService.setUser(this.username);
+   window.location.reload();
   }
 
   //Afficher un SnackBar
@@ -235,6 +236,7 @@ export class AppComponent {
 
     this.username = userStocke;
     
-    this.onUsernameChanged();
+    localStorage.setItem("username", this.username);
+    this.restService.setUser(this.username);
   }
 }

@@ -231,10 +231,8 @@ function readWorld(context) {
     let world = context.world;
     let activeangels = 150 * Math.sqrt(world.score / Math.pow(10, 15));
     let totalangels = world.activeangels;
-    console.log(world);
 
     let newWorld = require("./world");
-console.log(newWorld);
 
     newWorld.activeangels = activeangels;
     newWorld.totalangels = totalangels;

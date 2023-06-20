@@ -32,7 +32,7 @@
                 </div>
                 <mat-card-actions align="start">
                     <button mat-fab extended (click)="buyUpgrade(upgrade)"
-                        [disabled]="type == 'ANGE' ? world.activeangels < upgrade.seuil : world.activeangels < upgrade.seuil">
+                        [disabled]="type == 'ANGE' ? world.activeangels < upgrade.seuil : world.money < upgrade.seuil">
                         <mat-icon>add_shopping_cart</mat-icon>
                         Acheter
                     </button>

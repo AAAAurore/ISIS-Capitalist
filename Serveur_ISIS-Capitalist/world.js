@@ -1005,7 +1005,7 @@ module.exports = {
         {
             "name": "Tardis",
             "logo": "icones/tardis.png",
-            "seuil": 10000,
+            "seuil": 50,
             "idcible": 1,
             "ratio": 3,
             "typeratio": "VITESSE",
@@ -1090,7 +1090,7 @@ module.exports = {
         {
             "name": "Matt SMITH",
             "logo": "icones/ms.jpg",
-            "seuil": 1000,
+            "seuil": 10,
             "idcible": 1,
             "ratio": 2,
             "typeratio": "VITESSE",

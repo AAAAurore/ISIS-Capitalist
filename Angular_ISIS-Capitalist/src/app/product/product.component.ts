@@ -171,7 +171,7 @@ export class ProductComponent {
     );
     
     this._product.quantite += this.calcMaxCanBuy();
-    this.onBuy.emit({product: this._product, coutProduct : this.calcTotalCost()});
+    this.onBuy.emit({product: this._product, coutProduct : this._product.cout});
     this.calcTotalCost();
   }
 }

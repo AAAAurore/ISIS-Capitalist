@@ -21,32 +21,6 @@ function savePurchase(args, context) {
     let id = args.id;
     let quantite = args.quantite;
 
-    let allUnlocks = world.allunlocks.filter(a => a.idcible == 0);
-
-    allUnlocks.forEach(a => {
-        let quantiteMin = 0;
-        world.products.forEach((p, index) => {
-            if(index == 0 || p.quantite < quantiteMin) {
-                quantiteMin = p.quantite;
-            }
-        })
-
-        if (quantiteMin >= a.seuil) {
-            a.unlocked = true;
-            world.products.forEach(p => {
-                if (a.typeratio == "VITESSE") {
-                    p.vitesse = p.vitesse / a.ratio;
-                }
-                else if (a.typeratio == "GAIN") {
-                    p.revenu = p.revenu * a.ratio;
-                }
-                else{
-                    world.angelbonus += a.ratio;
-                }
-            })
-        }
-    })
-
     let product = world.products.find(p => p.id == id);
     
     if(product) {
@@ -76,6 +50,32 @@ function savePurchase(args, context) {
             `Le produit avec l'identifiant ${id} n'existe pas.`
         )
     }
+
+    let allUnlocks = world.allunlocks.filter(a => a.idcible == 0);
+
+    allUnlocks.forEach(a => {
+        let quantiteMin = 0;
+        world.products.forEach((p, index) => {
+            if(index == 0 || p.quantite < quantiteMin) {
+                quantiteMin = p.quantite;
+            }
+        })
+
+        if (quantiteMin >= a.seuil) {
+            a.unlocked = true;
+            world.products.forEach(p => {
+                if (a.typeratio == "VITESSE") {
+                    p.vitesse = p.vitesse / a.ratio;
+                }
+                else if (a.typeratio == "GAIN") {
+                    p.revenu = p.revenu * a.ratio;
+                }
+                else{
+                    world.angelbonus += a.ratio;
+                }
+            })
+        }
+    })
 }
 
 function saveProduction(args, context) {
@@ -85,8 +85,17 @@ function saveProduction(args, context) {
     
     if(product) {
         product.timeleft = product.vitesse;
+
+        // La première production n'a pas mis à jour le money et le score
+        if(world.lastupdate == "0"){
+            world.money += product.revenu * product.quantite
+                * (1 + world.activeangels * world.angelbonus / 100);
+            world.score += product.revenu * product.quantite
+                * (1 + world.activeangels * world.angelbonus / 100);
+        }
+        
         world.lastupdate = Date.now().toString();
-        product.lastupdate = Date.now().toString();
+        
     }
     else {
         throw new Error(
@@ -229,11 +238,13 @@ function saveScore(context) {
 
 function readWorld(context) {
     let world = context.world;
+    let score = context.score;
     let activeangels = 150 * Math.sqrt(world.score / Math.pow(10, 15));
     let totalangels = world.activeangels;
 
     let newWorld = require("./world");
 
+    newWorld.score = score;
     newWorld.activeangels = activeangels;
     newWorld.totalangels = totalangels;
     context.world = newWorld;

@@ -1,6 +1,6 @@
 # build environment
 FROM node:16-alpine as build
-WORKDIR /app
+WORKDIR /usr/src/app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
@@ -10,6 +10,6 @@ COPY . ./
 RUN npm run build
 # production environment
 FROM nginx:stable-alpine
-COPY --from=build /app/dist/Angular_ISIS-Capitalist /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/Angular_ISIS-Capitalist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

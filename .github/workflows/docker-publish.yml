@@ -29,9 +29,9 @@ jobs:
           - dockerfile: ./Serveur_ISIS-Capitalist/Dockerfile
             image: ghcr.io/aaaaurore/${{ github.repository }}
             context: ./Serveur_ISIS-Capitalist
-#          - dockerfile: ./Angular_ISIS-Capitalist/Dockerfile
-#            image: ghcr.io/aaaaurore/${{ github.repository }}
-#            context: ./Angular_ISIS-Capitalist
+          - dockerfile: ./Angular_ISIS-Capitalist/Dockerfile
+            image: ghcr.io/aaaaurore/${{ github.repository }}
+            context: ./Angular_ISIS-Capitalist
     permissions:
       contents: read
       packages: write

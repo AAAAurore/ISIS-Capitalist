@@ -9,7 +9,7 @@ import { ACHETER_ANGELUPGRADE, ACHETER_CASHUPGRADE, ACHETER_QT_PRODUIT, ENGAGER_
 })
 export class RestserviceService {
 
-  server = "http://localhost:4000/";
+  server = "https://doctorwhocapitalist.azurewebsites.net/";
   user = "";
 
   constructor(private http: HttpClient) { }
